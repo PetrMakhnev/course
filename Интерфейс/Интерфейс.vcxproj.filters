@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Elements">
+      <UniqueIdentifier>{450087d0-d7c4-4acf-bee5-2bf8f3d7b689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Интерфейс">
+      <UniqueIdentifier>{d3f179de-9817-46bb-b14c-c1debef349b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Elements\ItemList">
+      <UniqueIdentifier>{e7a2b03f-6c4c-41c1-af47-4e2b5dd49362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Elements\Input">
+      <UniqueIdentifier>{1474b0cf-808b-4f81-8600-4e0b9a178639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Elements\Button">
+      <UniqueIdentifier>{6ae26a2c-16e0-4d1f-8c36-4888dd58db63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Elements\Base">
+      <UniqueIdentifier>{4b74e3ef-be5a-4cce-a33b-f6017d7efc0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Elements\Label">
+      <UniqueIdentifier>{445f6e21-9fa8-4ade-87b4-11cf75b2dbdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Elements\ListDown">
+      <UniqueIdentifier>{fb90a281-aa9a-4702-9ad5-41e7d2c96488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\String">
+      <UniqueIdentifier>{cb0e5a97-34ce-47f5-9fd3-07cf6f1a6d87}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Elements\button_.cpp">
+      <Filter>Исходные файлы\Elements\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Elements\control.cpp">
+      <Filter>Исходные файлы\Elements\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Elements\input_.cpp">
+      <Filter>Исходные файлы\Elements\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Elements\itemList_.cpp">
+      <Filter>Исходные файлы\Elements\ItemList</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>Исходные файлы\Интерфейс</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface_OnEvent.cpp">
+      <Filter>Исходные файлы\Интерфейс</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface_OnEvent_Function.cpp">
+      <Filter>Исходные файлы\Интерфейс</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface_Render.cpp">
+      <Filter>Исходные файлы\Интерфейс</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface_Setup.cpp">
+      <Filter>Исходные файлы\Интерфейс</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы\Интерфейс</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface_OnExecute.cpp">
+      <Filter>Исходные файлы\Интерфейс</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Исходные файлы\Elements\Label</Filter>
+    </ClCompile>
+    <ClCompile Include="ListDown.cpp">
+      <Filter>Исходные файлы\Elements\ListDown</Filter>
+    </ClCompile>
+    <ClCompile Include="String\Dec_String.cpp">
+      <Filter>Исходные файлы\String</Filter>
+    </ClCompile>
+    <ClCompile Include="String\ID_String.cpp">
+      <Filter>Исходные файлы\String</Filter>
+    </ClCompile>
+    <ClCompile Include="String\String.cpp">
+      <Filter>Исходные файлы\String</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Elements\button_.h">
+      <Filter>Исходные файлы\Elements\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Elements\control.h">
+      <Filter>Исходные файлы\Elements\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Elements\input_.h">
+      <Filter>Исходные файлы\Elements\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Elements\itemList_.h">
+      <Filter>Исходные файлы\Elements\ItemList</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Исходные файлы\Elements\Label</Filter>
+    </ClInclude>
+    <ClInclude Include="ListDown.h">
+      <Filter>Исходные файлы\Elements\ListDown</Filter>
+    </ClInclude>
+    <ClInclude Include="String\Dec_String.h">
+      <Filter>Исходные файлы\String</Filter>
+    </ClInclude>
+    <ClInclude Include="String\ID_String.h">
+      <Filter>Исходные файлы\String</Filter>
+    </ClInclude>
+    <ClInclude Include="String\String.h">
+      <Filter>Исходные файлы\String</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
