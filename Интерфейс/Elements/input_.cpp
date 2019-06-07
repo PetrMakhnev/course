@@ -101,7 +101,7 @@ void Input_::textRender()
 	SDL_Surface* textSurface;
 	SDL_Rect textRect;
 
-	if ((textSurface = TTF_RenderText_Blended(font, inputText.c_str(), Colors.element_text)) != nullptr) {
+	if ((textSurface = TTF_RenderUTF8_Blended(font, inputText.c_str(), Colors.element_text)) != nullptr) {
 		textRect.w = textSurface->w;
 		textRect.h = textSurface->h;
 		textRect.x = sizes->x + 10;

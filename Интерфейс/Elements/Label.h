@@ -3,7 +3,7 @@
 #include "SDL_image.h"
 #include "SDL_ttf.h"
 #include "iostream"
-#include "Color.h"
+#include "../Color.h"
 using namespace std;
 
 enum TYPES {

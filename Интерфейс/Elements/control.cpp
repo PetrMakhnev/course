@@ -22,7 +22,7 @@ void Control::renderLabel(string text)
 	SDL_Surface* textSurface;
 	SDL_Rect textRect;
 
-	if ((textSurface = TTF_RenderText_Blended(font, text.c_str(), Colors.element_text)) != nullptr) {
+	if ((textSurface = TTF_RenderUTF8_Blended(font, text.c_str(), Colors.element_text)) != nullptr) {
 		textRect.w = textSurface->w;
 		textRect.h = textSurface->h;
 		textRect.x = sizes->x + sizes->w / 2 - textSurface->w / 2;
@@ -42,7 +42,7 @@ void Control::renderLabel(string text, SDL_Rect* renderRect)
 	SDL_Surface* textSurface;
 	SDL_Rect textRect;
 
-	if ((textSurface = TTF_RenderText_Blended(font, text.c_str(), Colors.element_text)) != nullptr) {
+	if ((textSurface = TTF_RenderUTF8_Blended(font, text.c_str(), Colors.element_text)) != nullptr) {
 		textRect.w = textSurface->w;
 		textRect.h = textSurface->h;
 		textRect.x = renderRect->x + renderRect->w / 2 - textSurface->w / 2;
@@ -63,7 +63,7 @@ void Control::renderLabel(string text, SDL_Rect* renderRect, int type)
 	SDL_Surface* textSurface;
 	SDL_Rect textRect;
 
-	if ((textSurface = TTF_RenderText_Blended(font, text.c_str(), Colors.element_text)) != nullptr) {
+	if ((textSurface = TTF_RenderUTF8_Blended(font, text.c_str(), Colors.element_text)) != nullptr) {
 		textRect.w = textSurface->w;
 		textRect.h = textSurface->h;
 		

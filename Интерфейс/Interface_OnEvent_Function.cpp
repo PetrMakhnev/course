@@ -100,6 +100,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 				Inputs.at(0)->clear();
 				Inputs.at(0)->render();
 
+
 				switch (type)
 				{
 
@@ -109,6 +110,8 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					DropDownLists.at(2)->add("Base class: " + value, 10 + count_ready);
 					DropDownLists.at(2)->render();
+
+				
 					break;
 
 				case DROP_ID_CLASS:
@@ -117,6 +120,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					DropDownLists.at(2)->add("Identificator class: " + value, 10 + count_ready);
 					DropDownLists.at(2)->render();
+
 					break;
 
 				case DROP_DEC_CLASS:
@@ -125,6 +129,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					DropDownLists.at(2)->add("Decimal class: " + value, 10 + count_ready);
 					DropDownLists.at(2)->render();
+
 					break;
 
 				default: break;
@@ -147,7 +152,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
 					int indexSecond = DropDownLists.at(4)->getFlag() - 10;
 
-					/// ÎÑÍÎÂÍÎÅ ÏĞÈÑÂÀÈÂÀÍÈÅ
+					/// ĞĞ¡ĞĞĞ’ĞĞĞ• ĞŸĞ Ğ˜Ğ¡Ğ’ĞĞ˜Ğ’ĞĞĞ˜Ğ•
 					*ptrBaseClass.at(indexFirst) = *ptrBaseClass.at(indexSecond);
 					///
 
@@ -170,12 +175,23 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					DropDownLists.at(3)->render();
 					DropDownLists.at(4)->render();
 					
+					nowOperation = NULLELE;
+
 					break;
 				}
 				case TEST_STRING_GET_LENGTH: {
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
-					// TO DO Äîáàâèòü âûâîä â èíòåğôåéñ
-					cout << ptrBaseClass.at(indexFirst)->getLength();
+					
+
+					int length = ptrBaseClass.at(indexFirst)->getLength();
+					char* length_str = new char[10];
+					_itoa(length, length_str, 10);
+					string len_num(length_str);
+					string len_str = "Ğ”Ğ»Ğ¸Ğ½Ğ° ÑÑ‚Ñ€Ğ¾ĞºĞ¸ Ñ€Ğ°Ğ²Ğ½Ğ°: " + len_num;
+
+					TextFields.at(0)->add(len_str);
+					TextFields.at(0)->render();
+					cout << length;
 
 					Labels.at(4)->show(false);
 					Labels.at(5)->show(false);
@@ -187,13 +203,16 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					DropDownLists.at(3)->render();
 					DropDownLists.at(4)->render();
+
+					nowOperation = NULLELE;
+
 					break;
 				}
 				
 				case TEST_IDENTIFICATION_OPERATOR_TO_LOWER_CASE: {
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
 
-					/// ÎÑÍÎÂÍÀß ÔÓÍÊÖÈß
+					/// ĞĞ¡ĞĞĞ’ĞĞĞ¯ Ğ¤Ğ£ĞĞšĞ¦Ğ˜Ğ¯
 					((ID_String*)ptrBaseClass.at(indexFirst))->toLowerCase();
 					///
 
@@ -218,6 +237,8 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					DropDownLists.at(3)->render();
 					DropDownLists.at(4)->render();
 
+					nowOperation = NULLELE;
+
 					break;
 				}
 				case TEST_IDENTIFICATION_OPERATOR_EQUAL: {
@@ -225,7 +246,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
 					int indexSecond = DropDownLists.at(4)->getFlag() - 10;
 
-					/// ÎÑÍÎÂÍÎÅ ÏĞÈÑÂÀÈÂÀÍÈÅ
+					/// ĞĞ¡ĞĞĞ’ĞĞĞ• ĞŸĞ Ğ˜Ğ¡Ğ’ĞĞ˜Ğ’ĞĞĞ˜Ğ•
 					*ptrBaseClass.at(indexFirst) = *ptrBaseClass.at(indexSecond);
 					///
 
@@ -248,6 +269,8 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					DropDownLists.at(3)->render();
 					DropDownLists.at(4)->render();
 
+					nowOperation = NULLELE;
+
 					break;
 				}
 				case TEST_IDENTIFICATION_OPERATOR_SUBSTRACTION: {
@@ -255,7 +278,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
 					int indexSecond = DropDownLists.at(4)->getFlag() - 10;
 
-					/// ÎÑÍÎÂÍÎÅ ÏĞÈÑÂÀÈÂÀÍÈÅ
+					/// ĞĞ¡ĞĞĞ’ĞĞĞ• ĞŸĞ Ğ˜Ğ¡Ğ’ĞĞ˜Ğ’ĞĞĞ˜Ğ•
 					ptrBaseClass.push_back(new ID_String());
 					type_ptrBaseClasses.push_back(STRING_ID);
 
@@ -283,6 +306,9 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					DropDownLists.at(2)->render();
 					DropDownLists.at(3)->render();
 					DropDownLists.at(4)->render();
+
+					nowOperation = NULLELE;
+
 					break;
 				}
 				
@@ -290,13 +316,17 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
 
-					/// ÎÑÍÎÂÍÎÅ ÏĞÈÑÂÀÈÂÀÍÈÅ
+					/// ĞĞ¡ĞĞĞ’ĞĞĞ• ĞŸĞ Ğ˜Ğ¡Ğ’ĞĞ˜Ğ’ĞĞĞ˜Ğ•
 					bool isUnInt = ((DEC_String *)(ptrBaseClass.at(indexFirst)))->isUnsignedInt();
 					
 					if (isUnInt) {
+						TextFields.at(0)->add("ĞŸÑ€ĞµĞ¾Ğ±Ñ€Ğ°Ğ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ Ğº Unsigned Int Ğ²Ğ¾Ğ·Ğ¼Ğ¾Ğ¶Ğ½Ğ¾");
+						TextFields.at(0)->render();
 						cout << "YES" << endl;
 					}
 					else {
+						TextFields.at(0)->add("ĞŸÑ€ĞµĞ¾Ğ±Ñ€Ğ°Ğ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ Ğº Unsigned Int ĞĞ• Ğ²Ğ¾Ğ·Ğ¼Ğ¾Ğ¶Ğ½Ğ¾");
+						TextFields.at(0)->render();
 						cout << "NO" << endl;
 					}
 					///
@@ -319,19 +349,24 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					DropDownLists.at(2)->render();
 					DropDownLists.at(3)->render();
 					DropDownLists.at(4)->render();
+
+					nowOperation = NULLELE;
+
 					break;
 				}
 				case TEST_DECIMAL_SUBTRACTION: {
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
 					int indexSecond = DropDownLists.at(4)->getFlag() - 10;
 
-					/// ÎÑÍÎÂÍÎÅ ÏĞÈÑÂÀÈÂÀÍÈÅ
+					/// ĞĞ¡ĞĞĞ’ĞĞĞ• ĞŸĞ Ğ˜Ğ¡Ğ’ĞĞ˜Ğ’ĞĞĞ˜Ğ•
 					DEC_String* first = (DEC_String*)(ptrBaseClass.at(indexFirst));
 					DEC_String* second = (DEC_String*)(ptrBaseClass.at(indexSecond));
 
 					int result = *first - *second;
 
-					cout << "Ğåçóëüòàò âû÷èòàíèÿ ğàâåí: " << result << endl;
+					TextFields.at(0)->add("Ğ ĞµĞ·ÑƒĞ»ÑŒÑ‚Ğ°Ñ‚ Ğ²Ñ‹Ñ‡Ğ¸Ñ‚Ğ°Ğ½Ğ¸Ñ Ñ€Ğ°Ğ²ĞµĞ½: " + result);
+					TextFields.at(0)->render();
+					cout << "Ğ ĞµĞ·ÑƒĞ»ÑŒÑ‚Ğ°Ñ‚ Ğ²Ñ‹Ñ‡Ğ¸Ñ‚Ğ°Ğ½Ğ¸Ñ Ñ€Ğ°Ğ²ĞµĞ½: " << result << endl;
 					///
 
 					DropDownLists.at(2)->deleteItems()->clear();
@@ -352,6 +387,9 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					DropDownLists.at(2)->render();
 					DropDownLists.at(3)->render();
 					DropDownLists.at(4)->render();
+
+					nowOperation = NULLELE;
+
 					break;
 				}
 				default: break;
@@ -425,8 +463,10 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							count++;
 
 					if (count < 2) {
-						// îøèáêà 
-						cout << "Ñëèøêîì ìàëî îáúåêòîâ áàçîâîãî êëàññà (íåîáõîäèìî íå ìåíüøå 2)" << endl;
+						// Ğ¾ÑˆĞ¸Ğ±ĞºĞ° 
+						TextFields.at(0)->add("Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² Ğ±Ğ°Ğ·Ğ¾Ğ²Ğ¾Ğ³Ğ¾ ĞºĞ»Ğ°ÑÑĞ°");
+						TextFields.at(0)->render();
+						cout << "Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² Ğ±Ğ°Ğ·Ğ¾Ğ²Ğ¾Ğ³Ğ¾ ĞºĞ»Ğ°ÑÑĞ° (Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼Ğ¾ Ğ½Ğµ Ğ¼ĞµĞ½ÑŒÑˆĞµ 2)" << endl;
 						return;
 					}
 
@@ -448,11 +488,18 @@ void Interface::mouseButtonUp(SDL_Event* event)
 
 						if (type_ptrBaseClasses.at(i) == STRING_BASE){
 							DropDownLists.at(3)->add(newElement, 10 + i);
-							DropDownLists.at(4)->add(newElement, 10 + i);						
+							DropDownLists.at(4)->add(newElement, 10 + i);
+							
 						}
-						else {
-							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);						
-							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);				
+						else if (type_ptrBaseClasses.at(i) == STRING_ID){
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+							
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+							
 						}
 					}
 
@@ -470,8 +517,10 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							count++;
 
 					if (count < 1) {
-						// îøèáêà 
-						cout << "Ñëèøêîì ìàëî îáúåêòîâ áàçîâîãî êëàññà (íåîáõîäèìî íå ìåíüøå 1)" << endl;
+						// Ğ¾ÑˆĞ¸Ğ±ĞºĞ° 
+						TextFields.at(0)->add("Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² Ğ±Ğ°Ğ·Ğ¾Ğ²Ğ¾Ğ³Ğ¾ ĞºĞ»Ğ°ÑÑĞ°");
+						TextFields.at(0)->render();
+						cout << "Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² Ğ±Ğ°Ğ·Ğ¾Ğ²Ğ¾Ğ³Ğ¾ ĞºĞ»Ğ°ÑÑĞ° (Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼Ğ¾ Ğ½Ğµ Ğ¼ĞµĞ½ÑŒÑˆĞµ 1)" << endl;
 						return;
 					}
 
@@ -491,10 +540,17 @@ void Interface::mouseButtonUp(SDL_Event* event)
 						if (type_ptrBaseClasses.at(i) == STRING_BASE) {
 							DropDownLists.at(3)->add(newElement, 10 + i);
 							DropDownLists.at(4)->add(newElement, 10 + i);
+							
 						}
-						else {
+						else if (type_ptrBaseClasses.at(i) == STRING_ID) {
 							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+							
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+							
 						}
 					}
 
@@ -512,8 +568,10 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							count++;
 
 					if (count < 1) {
-						// îøèáêà 
-						cout << "Ñëèøêîì ìàëî îáúåêòîâ áàçîâîãî êëàññà (íåîáõîäèìî íå ìåíüøå 1)" << endl;
+						// Ğ¾ÑˆĞ¸Ğ±ĞºĞ° 
+						TextFields.at(0)->add("Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² ĞºĞ»Ğ°ÑÑĞ° Ğ¸Ğ´ĞµĞ½Ñ‚Ğ¸Ñ„Ğ¸ĞºĞ°Ñ‚Ğ¾Ñ€Ğ°");
+						TextFields.at(0)->render();
+						cout << "Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² ĞºĞ»Ğ°ÑĞ° Ğ¸Ğ´ĞµĞ½Ñ‚Ğ¸Ñ„Ğ¸ĞºĞ°Ñ‚Ğ¾Ñ€Ğ° (Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼Ğ¾ Ğ½Ğµ Ğ¼ĞµĞ½ÑŒÑˆĞµ 1)" << endl;
 						return;
 					}
 
@@ -530,13 +588,20 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
 						string newElement(ptrBaseClass.at(i)->getString());
 
-						if (type_ptrBaseClasses.at(i) == STRING_ID) {
-							DropDownLists.at(3)->add(newElement, 10 + i);
-							DropDownLists.at(4)->add(newElement, 10 + i);
-						}
-						else {
+						if (type_ptrBaseClasses.at(i) == STRING_BASE) {
 							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+							
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_ID) {
+							DropDownLists.at(3)->add(newElement, 10 + i);
+							DropDownLists.at(4)->add(newElement, 10 + i);
+							
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+							
 						}
 					}
 
@@ -554,10 +619,13 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							count++;
 
 					if (count < 2) {
-						// îøèáêà 
-						cout << "Ñëèøêîì ìàëî îáúåêòîâ áàçîâîãî êëàññà (íåîáõîäèìî íå ìåíüøå 2)" << endl;
+						// Ğ¾ÑˆĞ¸Ğ±ĞºĞ°
+						TextFields.at(0)->add("Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² ĞºĞ»Ğ°ÑÑĞ° Ğ¸Ğ´ĞµĞ½Ñ‚Ğ¸Ñ„Ğ¸ĞºĞ°Ñ‚Ğ¾Ñ€Ğ°");
+						TextFields.at(0)->render();
+						cout << "Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² Ğ±Ğ°Ğ·Ğ¾Ğ²Ğ¾Ğ³Ğ¾ ĞºĞ»Ğ°ÑÑĞ° (Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼Ğ¾ Ğ½Ğµ Ğ¼ĞµĞ½ÑŒÑˆĞµ 2)" << endl;
 						return;
 					}
+
 					nowOperation = TEST_IDENTIFICATION_OPERATOR_EQUAL;
 
 					DropDownLists.at(3)->show();
@@ -572,18 +640,23 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					DropDownLists.at(4)->deleteItems()->clear();
 
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
-						if (type_ptrBaseClasses.at(i) == STRING_ID)
-						{
-							string newElement(ptrBaseClass.at(i)->getString());
 
-							if (type_ptrBaseClasses.at(i) == STRING_ID) {
-								DropDownLists.at(3)->add(newElement, 10 + i);
-								DropDownLists.at(4)->add(newElement, 10 + i);
-							}
-							else {
-								DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
-								DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
-							}
+						string newElement(ptrBaseClass.at(i)->getString());
+
+						if (type_ptrBaseClasses.at(i) == STRING_BASE) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+								
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_ID) {
+							DropDownLists.at(3)->add(newElement, 10 + i);
+							DropDownLists.at(4)->add(newElement, 10 + i);
+								
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+								
 						}
 					}
 
@@ -601,8 +674,10 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							count++;
 
 					if (count < 2) {
-						// îøèáêà 
-						cout << "Ñëèøêîì ìàëî îáúåêòîâ áàçîâîãî êëàññà (íåîáõîäèìî íå ìåíüøå 2)" << endl;
+						// Ğ¾ÑˆĞ¸Ğ±ĞºĞ° 
+						TextFields.at(0)->add("Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² ĞºĞ»Ğ°ÑÑĞ° Ğ¸Ğ´ĞµĞ½Ñ‚Ğ¸Ñ„Ğ¸ĞºĞ°Ñ‚Ğ¾Ñ€Ğ°");
+						TextFields.at(0)->render();
+						cout << "Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² Ğ±Ğ°Ğ·Ğ¾Ğ²Ğ¾Ğ³Ğ¾ ĞºĞ»Ğ°ÑÑĞ° (Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼Ğ¾ Ğ½Ğµ Ğ¼ĞµĞ½ÑŒÑˆĞµ 2)" << endl;
 						return;
 					}
 
@@ -620,19 +695,25 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					DropDownLists.at(4)->deleteItems()->clear();
 
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
-						if (type_ptrBaseClasses.at(i) == STRING_ID)
-						{
-							string newElement(ptrBaseClass.at(i)->getString());
+	
+						string newElement(ptrBaseClass.at(i)->getString());
 
-							if (type_ptrBaseClasses.at(i) == STRING_ID) {
-								DropDownLists.at(3)->add(newElement, 10 + i);
-								DropDownLists.at(4)->add(newElement, 10 + i);
-							}
-							else {
-								DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
-								DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
-							}
+						if (type_ptrBaseClasses.at(i) == STRING_BASE) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+								
 						}
+						else if (type_ptrBaseClasses.at(i) == STRING_ID) {
+							DropDownLists.at(3)->add(newElement, 10 + i);
+							DropDownLists.at(4)->add(newElement, 10 + i);
+								
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+								
+						}
+						
 					}
 
 					DropDownLists.at(3)->render();
@@ -650,8 +731,10 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							count++;
 
 					if (count < 1) {
-						// îøèáêà 
-						cout << "Ñëèøêîì ìàëî îáúåêòîâ áàçîâîãî êëàññà (íåîáõîäèìî íå ìåíüøå 1)" << endl;
+						// Ğ¾ÑˆĞ¸Ğ±ĞºĞ° 
+						TextFields.at(0)->add("Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² ĞºĞ»Ğ°ÑĞ° Ğ´ĞµÑÑÑ‚Ğ¸Ñ‡Ğ½Ğ¾Ğ³Ğ¾ Ñ‡Ğ¸ÑĞ»Ğ°");
+						TextFields.at(0)->render();
+						cout << "Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² Ğ±Ğ°Ğ·Ğ¾Ğ²Ğ¾Ğ³Ğ¾ ĞºĞ»Ğ°ÑÑĞ° (Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼Ğ¾ Ğ½Ğµ Ğ¼ĞµĞ½ÑŒÑˆĞµ 1)" << endl;
 						return;
 					}
 
@@ -666,19 +749,25 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					DropDownLists.at(4)->deleteItems()->clear();
 
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
-						if (type_ptrBaseClasses.at(i) == STRING_DEC)
-						{
-							string newElement(ptrBaseClass.at(i)->getString());
+						
+						string newElement(ptrBaseClass.at(i)->getString());
 
-							if (type_ptrBaseClasses.at(i) == STRING_DEC) {
-								DropDownLists.at(3)->add(newElement, 10 + i);
-								DropDownLists.at(4)->add(newElement, 10 + i);
-							}
-							else {
-								DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
-								DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
-							}
+						if (type_ptrBaseClasses.at(i) == STRING_BASE) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+								
 						}
+						else if (type_ptrBaseClasses.at(i) == STRING_ID) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+								
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+							DropDownLists.at(3)->add(newElement, 10 + i);
+							DropDownLists.at(4)->add(newElement, 10 + i);
+								
+						}
+						
 					}
 
 					DropDownLists.at(3)->render();
@@ -695,8 +784,10 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							count++;
 
 					if (count < 2) {
-						// îøèáêà 
-						cout << "Ñëèøêîì ìàëî îáúåêòîâ áàçîâîãî êëàññà (íåîáõîäèìî íå ìåíüøå 2)" << endl;
+						// Ğ¾ÑˆĞ¸Ğ±ĞºĞ° 
+						TextFields.at(0)->add("Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² ĞºĞ»Ğ°ÑĞ° Ğ´ĞµÑÑÑ‚Ğ¸Ñ‡Ğ½Ğ¾Ğ³Ğ¾ Ñ‡Ğ¸ÑĞ»Ğ°");
+						TextFields.at(0)->render();
+						cout << "Ğ¡Ğ»Ğ¸ÑˆĞºĞ¾Ğ¼ Ğ¼Ğ°Ğ»Ğ¾ Ğ¾Ğ±ÑŠĞµĞºÑ‚Ğ¾Ğ² Ğ±Ğ°Ğ·Ğ¾Ğ²Ğ¾Ğ³Ğ¾ ĞºĞ»Ğ°ÑÑĞ° (Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼Ğ¾ Ğ½Ğµ Ğ¼ĞµĞ½ÑŒÑˆĞµ 2)" << endl;
 						return;
 					}
 
@@ -714,18 +805,23 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					DropDownLists.at(4)->deleteItems()->clear();
 
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
-						if (type_ptrBaseClasses.at(i) == STRING_DEC)
-						{
-							string newElement(ptrBaseClass.at(i)->getString());
+						
+						string newElement(ptrBaseClass.at(i)->getString());
 
-							if (type_ptrBaseClasses.at(i) == STRING_DEC) {
-								DropDownLists.at(3)->add(newElement, 10 + i);
-								DropDownLists.at(4)->add(newElement, 10 + i);
-							}
-							else {
-								DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
-								DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
-							}
+						if (type_ptrBaseClasses.at(i) == STRING_BASE) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+								
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_ID) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+								
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+							DropDownLists.at(3)->add(newElement, 10 + i);
+							DropDownLists.at(4)->add(newElement, 10 + i);
+								
 						}
 					}
 
@@ -792,7 +888,7 @@ void Interface::keyDown(SDL_Event* event)
 	{
 
 	case SDLK_RETURN:
-		cout << "Íàæàò Enter â APP" << endl;
+		cout << "ĞĞ°Ğ¶Ğ°Ñ‚ Enter Ğ² APP" << endl;
 		break;
 
 	}

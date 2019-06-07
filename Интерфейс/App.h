@@ -9,8 +9,9 @@
 #include "Elements/button_.h"
 #include "Elements/input_.h"
 #include "Elements/itemList_.h"
-#include "label.h"
-#include "ListDown.h"
+#include "Elements/label.h"
+#include "Elements/ListDown.h"
+#include "Elements/TextField.h"
 
 #include "String/String.h"
 #include "String/ID_String.h"
@@ -55,6 +56,7 @@ private:
 	vector <ItemList_*> ItemLists;
 	vector <DropDownList*> DropDownLists;
 	vector <Label*> Labels;
+	vector <TextField*> TextFields;
 	//
 
 	// Элементы приложения
@@ -66,6 +68,11 @@ private:
 	vector <int> type_ptrBaseClasses;
 
 	int nowOperation;
+
+	// Количество элементов каждого класса
+	int count_base;
+	int count_id;
+	int count_dec;
 
 public:
 	Interface();
@@ -86,9 +93,6 @@ private:
 
 	// key pressed
 	void keyDown(SDL_Event* event);
-
-	// set-up elements visible
-	void setup();
 
 	//
 	void quit();

@@ -26,7 +26,7 @@ void Label::render()
 		
 
 
-	if ((textSurface = TTF_RenderText_Blended(font, label.c_str() , Colors.element_text)) != nullptr) {
+	if ((textSurface = TTF_RenderUTF8_Blended(font, label.c_str() , Colors.element_text)) != nullptr) {
 		textRect.w = textSurface->w;
 		textRect.h = textSurface->h;
 		if (type == BY_RIGHT)

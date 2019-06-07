@@ -15,6 +15,10 @@ Interface::Interface()
 	count_element = 0;
 
 	nowOperation = 0;
+
+	count_base = 0;
+	count_id = 0;
+	count_dec = 0;
 }
 
 Interface::Interface(short width, short height)
@@ -33,6 +37,10 @@ Interface::Interface(short width, short height)
 
 	ready_fill_classes = false;
 	nowOperation = 0;
+
+	count_base = 0;
+	count_id = 0;
+	count_dec = 0;
 }
 
 Interface::~Interface()

@@ -2,7 +2,6 @@
 
 void Interface::render()
 {
-	setup();
 
 	SDL_SetRenderDrawColor(renderer, Colors.background.r, Colors.background.g, Colors.background.b, Colors.background.a);
 	SDL_RenderFillRect(renderer, NULL);
@@ -28,6 +27,10 @@ void Interface::render()
 
 	for (int i = 0; i < DropDownLists.size(); i++) {
 		DropDownLists.at(i)->render();
+	}
+
+	for (int i = 0; i < TextFields.size(); i++) {
+		TextFields.at(i)->render();
 	}
 	
 }

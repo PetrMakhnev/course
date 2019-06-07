@@ -8,6 +8,7 @@ String::String()
 	length = 0;
 
 	cout << "Базовый класс. Сработал конструктор без параметров" << endl;
+
 }
 
 String::String(const String& obj)
@@ -28,6 +29,8 @@ String::String(const String& obj)
 		str = nullptr;
 	
 	calls++;
+
+	
 
 	cout << "Базовый класс. Конструктор копирования сработал в " << calls << "-раз" << endl;
 }
