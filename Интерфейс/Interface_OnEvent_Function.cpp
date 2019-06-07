@@ -143,32 +143,184 @@ void Interface::mouseButtonDown(SDL_Event* event)
 				{
 
 				case TEST_STRING_EQUAL: {
+
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
 					int indexSecond = DropDownLists.at(4)->getFlag() - 10;
 
+					/// ОСНОВНОЕ ПРИСВАИВАНИЕ
 					*ptrBaseClass.at(indexFirst) = *ptrBaseClass.at(indexSecond);
-				
+					///
 
-					DropDownLists.at(2)->deleteItems();
+					DropDownLists.at(2)->deleteItems()->clear();
 
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
-
 						string newElement(ptrBaseClass.at(i)->getString());
-
 						DropDownLists.at(2)->add(newElement, 10 + i);
-						
-						
 					}
 
+					DropDownLists.at(3)->hide();
+					DropDownLists.at(4)->hide();
+
 					DropDownLists.at(2)->render();
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+					
 					break;
 				}
 				case TEST_STRING_GET_LENGTH: {
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
+					// TO DO Добавить вывод в интерфейс
+					cout << ptrBaseClass.at(indexFirst)->getLength();
+
+					DropDownLists.at(3)->hide();
+					DropDownLists.at(4)->hide();
+
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
 					break;
 				}
-				default:
+				
+				case TEST_IDENTIFICATION_OPERATOR_TO_LOWER_CASE: {
+					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
+
+					/// ОСНОВНАЯ ФУНКЦИЯ
+					((ID_String*)ptrBaseClass.at(indexFirst))->toLowerCase();
+					///
+
+					DropDownLists.at(2)->deleteItems()->clear();
+					DropDownLists.at(3)->deleteItems()->clear();
+					DropDownLists.at(4)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						string newElement(ptrBaseClass.at(i)->getString());
+						DropDownLists.at(2)->add(newElement, 10 + i);
+					}
+
+					DropDownLists.at(3)->hide();
+					DropDownLists.at(4)->hide();
+
+					DropDownLists.at(2)->render();
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+
 					break;
+				}
+				case TEST_IDENTIFICATION_OPERATOR_EQUAL: {
+
+					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
+					int indexSecond = DropDownLists.at(4)->getFlag() - 10;
+
+					/// ОСНОВНОЕ ПРИСВАИВАНИЕ
+					*ptrBaseClass.at(indexFirst) = *ptrBaseClass.at(indexSecond);
+					///
+
+					DropDownLists.at(2)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						string newElement(ptrBaseClass.at(i)->getString());
+						DropDownLists.at(2)->add(newElement, 10 + i);
+					}
+
+					DropDownLists.at(3)->hide();
+					DropDownLists.at(4)->hide();
+
+					DropDownLists.at(2)->render();
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+
+					break;
+				}
+				case TEST_IDENTIFICATION_OPERATOR_SUBSTRACTION: {
+
+					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
+					int indexSecond = DropDownLists.at(4)->getFlag() - 10;
+
+					/// ОСНОВНОЕ ПРИСВАИВАНИЕ
+					ptrBaseClass.push_back(new ID_String());
+					type_ptrBaseClasses.push_back(STRING_ID);
+
+					ID_String* first = (ID_String*)(ptrBaseClass.at(indexFirst));
+					ID_String* second = (ID_String*)(ptrBaseClass.at(indexSecond));
+
+					*ptrBaseClass.at(ptrBaseClass.size() - 1) = *first - *second;
+					///
+
+					DropDownLists.at(2)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						string newElement(ptrBaseClass.at(i)->getString());
+						DropDownLists.at(2)->add(newElement, 10 + i);
+					}
+
+					DropDownLists.at(3)->hide();
+					DropDownLists.at(4)->hide();
+
+					DropDownLists.at(2)->render();
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+					break;
+				}
+				
+
+				case TEST_DECIMAL_IS_UNSIGNED_INT: {
+
+					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
+
+					/// ОСНОВНОЕ ПРИСВАИВАНИЕ
+					bool isUnInt = ((DEC_String *)(ptrBaseClass.at(indexFirst)))->isUnsignedInt();
+					
+					if (isUnInt) {
+						cout << "YES" << endl;
+					}
+					else {
+						cout << "NO" << endl;
+					}
+					///
+
+					DropDownLists.at(2)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						string newElement(ptrBaseClass.at(i)->getString());
+						DropDownLists.at(2)->add(newElement, 10 + i);
+					}
+
+					DropDownLists.at(3)->hide();
+					DropDownLists.at(4)->hide();
+
+					DropDownLists.at(2)->render();
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+					break;
+				}
+				case TEST_DECIMAL_SUBTRACTION: {
+					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
+					int indexSecond = DropDownLists.at(4)->getFlag() - 10;
+
+					/// ОСНОВНОЕ ПРИСВАИВАНИЕ
+					DEC_String* first = (DEC_String*)(ptrBaseClass.at(indexFirst));
+					DEC_String* second = (DEC_String*)(ptrBaseClass.at(indexSecond));
+
+					int result = *first - *second;
+
+					cout << "Результат вычитания равен: " << result << endl;
+					///
+
+					DropDownLists.at(2)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						string newElement(ptrBaseClass.at(i)->getString());
+						DropDownLists.at(2)->add(newElement, 10 + i);
+					}
+
+					DropDownLists.at(3)->hide();
+					DropDownLists.at(4)->hide();
+
+					DropDownLists.at(2)->render();
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+					break;
+				}
+				default: break;
 				}
 
 				break;
@@ -221,12 +373,9 @@ void Interface::mouseButtonUp(SDL_Event* event)
 		}
 		else {
 
-			
-			
-
 			if (flag) {
 
-				for (int i = 0; i < ItemLists.size(); i++) {
+				for (size_t i = 0; i < ItemLists.size(); i++) {
 					ItemLists.at(i)->open(false);
 					ItemLists.at(i)->render();
 				}
@@ -237,6 +386,9 @@ void Interface::mouseButtonUp(SDL_Event* event)
 				case TEST_STRING_EQUAL: {
 
 					nowOperation = TEST_STRING_EQUAL;
+
+					DropDownLists.at(3)->show();
+					DropDownLists.at(4)->show();
 
 					short count = 0;
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
@@ -249,31 +401,33 @@ void Interface::mouseButtonUp(SDL_Event* event)
 						return;
 					}
 
+					DropDownLists.at(3)->deleteItems()->clear();
+					DropDownLists.at(4)->deleteItems()->clear();
+
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						string newElement(ptrBaseClass.at(i)->getString());
+
 						if (type_ptrBaseClasses.at(i) == STRING_BASE){
-
-							string newElement(ptrBaseClass.at(i)->getString());
-
 							DropDownLists.at(3)->add(newElement, 10 + i);
-							DropDownLists.at(3)->render();
-							DropDownLists.at(4)->add(newElement, 10 + i);
-							DropDownLists.at(4)->render();
+							DropDownLists.at(4)->add(newElement, 10 + i);						
 						}
 						else {
-							string newElement(ptrBaseClass.at(i)->getString());
-
-							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
-							DropDownLists.at(3)->render();
-							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
-							DropDownLists.at(4)->render();
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);						
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);				
 						}
 					}
+
+
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
 					break;
 				}
 
 				case TEST_STRING_GET_LENGTH: {
 
 					nowOperation = TEST_STRING_GET_LENGTH;
+
+					DropDownLists.at(3)->show();
 
 					short count = 0;
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
@@ -282,21 +436,243 @@ void Interface::mouseButtonUp(SDL_Event* event)
 
 					if (count < 1) {
 						// ошибка 
+						cout << "Слишком мало объектов базового класса (необходимо не меньше 1)" << endl;
+						return;
+					}
+
+					DropDownLists.at(3)->deleteItems()->clear();
+					DropDownLists.at(4)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						string newElement(ptrBaseClass.at(i)->getString());
+
+						if (type_ptrBaseClasses.at(i) == STRING_BASE) {
+							DropDownLists.at(3)->add(newElement, 10 + i);
+							DropDownLists.at(4)->add(newElement, 10 + i);
+						}
+						else {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+						}
+					}
+
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+					break;
+				}
+				
+
+				case TEST_IDENTIFICATION_OPERATOR_TO_LOWER_CASE: {
+
+					nowOperation = TEST_IDENTIFICATION_OPERATOR_TO_LOWER_CASE;
+
+					DropDownLists.at(3)->show();
+					//DropDownLists.at(4)->show();
+
+					short count = 0;
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
+						if (type_ptrBaseClasses.at(i) == STRING_ID)
+							count++;
+
+					if (count < 1) {
+						// ошибка 
+						cout << "Слишком мало объектов базового класса (необходимо не меньше 1)" << endl;
+						return;
+					}
+
+
+					DropDownLists.at(3)->deleteItems()->clear();
+					DropDownLists.at(4)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						string newElement(ptrBaseClass.at(i)->getString());
+
+						if (type_ptrBaseClasses.at(i) == STRING_ID) {
+							DropDownLists.at(3)->add(newElement, 10 + i);
+							DropDownLists.at(4)->add(newElement, 10 + i);
+						}
+						else {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+						}
+					}
+
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+
+					break;
+				}
+
+				case TEST_IDENTIFICATION_OPERATOR_EQUAL: {
+					nowOperation = TEST_IDENTIFICATION_OPERATOR_EQUAL;
+
+					DropDownLists.at(3)->show();
+					DropDownLists.at(4)->show();
+
+					short count = 0;
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
+						if (type_ptrBaseClasses.at(i) == STRING_ID)
+							count++;
+
+					if (count < 2) {
+						// ошибка 
 						cout << "Слишком мало объектов базового класса (необходимо не меньше 2)" << endl;
 						return;
 					}
 
-					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
-						if (type_ptrBaseClasses.at(i) == STRING_BASE) {
 
+					DropDownLists.at(3)->deleteItems()->clear();
+					DropDownLists.at(4)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						if (type_ptrBaseClasses.at(i) == STRING_ID)
+						{
 							string newElement(ptrBaseClass.at(i)->getString());
 
-							DropDownLists.at(3)->add(newElement, 10 + i);
-							DropDownLists.at(3)->render();
-							DropDownLists.at(4)->add(newElement, 10 + i);
-							DropDownLists.at(4)->render();
+							if (type_ptrBaseClasses.at(i) == STRING_ID) {
+								DropDownLists.at(3)->add(newElement, 10 + i);
+								DropDownLists.at(4)->add(newElement, 10 + i);
+							}
+							else {
+								DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+								DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+							}
 						}
 					}
+
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+
+					break;
+				}
+
+				case TEST_IDENTIFICATION_OPERATOR_SUBSTRACTION: {
+
+					nowOperation = TEST_IDENTIFICATION_OPERATOR_SUBSTRACTION;
+
+					DropDownLists.at(3)->show();
+					DropDownLists.at(4)->show();
+
+					short count = 0;
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
+						if (type_ptrBaseClasses.at(i) == STRING_ID)
+							count++;
+
+					if (count < 2) {
+						// ошибка 
+						cout << "Слишком мало объектов базового класса (необходимо не меньше 2)" << endl;
+						return;
+					}
+
+
+					DropDownLists.at(3)->deleteItems()->clear();
+					DropDownLists.at(4)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						if (type_ptrBaseClasses.at(i) == STRING_ID)
+						{
+							string newElement(ptrBaseClass.at(i)->getString());
+
+							if (type_ptrBaseClasses.at(i) == STRING_ID) {
+								DropDownLists.at(3)->add(newElement, 10 + i);
+								DropDownLists.at(4)->add(newElement, 10 + i);
+							}
+							else {
+								DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+								DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+							}
+						}
+					}
+
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+
+					break;
+				}
+
+
+				case TEST_DECIMAL_IS_UNSIGNED_INT: {
+
+					nowOperation = TEST_DECIMAL_IS_UNSIGNED_INT;
+
+					DropDownLists.at(3)->show();
+
+					short count = 0;
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
+						if (type_ptrBaseClasses.at(i) == STRING_DEC)
+							count++;
+
+					if (count < 1) {
+						// ошибка 
+						cout << "Слишком мало объектов базового класса (необходимо не меньше 1)" << endl;
+						return;
+					}
+
+					DropDownLists.at(3)->deleteItems()->clear();
+					DropDownLists.at(4)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						if (type_ptrBaseClasses.at(i) == STRING_DEC)
+						{
+							string newElement(ptrBaseClass.at(i)->getString());
+
+							if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+								DropDownLists.at(3)->add(newElement, 10 + i);
+								DropDownLists.at(4)->add(newElement, 10 + i);
+							}
+							else {
+								DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+								DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+							}
+						}
+					}
+
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+
+					break;
+				}
+					
+				case TEST_DECIMAL_SUBTRACTION: {
+
+					nowOperation = TEST_DECIMAL_SUBTRACTION;
+
+					DropDownLists.at(3)->show();
+					DropDownLists.at(4)->show();
+
+					short count = 0;
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
+						if (type_ptrBaseClasses.at(i) == STRING_DEC)
+							count++;
+
+					if (count < 2) {
+						// ошибка 
+						cout << "Слишком мало объектов базового класса (необходимо не меньше 2)" << endl;
+						return;
+					}
+
+					DropDownLists.at(3)->deleteItems()->clear();
+					DropDownLists.at(4)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						if (type_ptrBaseClasses.at(i) == STRING_DEC)
+						{
+							string newElement(ptrBaseClass.at(i)->getString());
+
+							if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+								DropDownLists.at(3)->add(newElement, 10 + i);
+								DropDownLists.at(4)->add(newElement, 10 + i);
+							}
+							else {
+								DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+								DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+							}
+						}
+					}
+
+					DropDownLists.at(3)->render();
+					DropDownLists.at(4)->render();
+
 					break;
 				}
 				default: break;

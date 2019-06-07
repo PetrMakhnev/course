@@ -83,9 +83,9 @@ public:
 	int getFlag();
 	vector <DropDownItem*> getItems();
 
-	void clear();
+	DropDownList* clear();
 
-	void deleteItems();
+	DropDownList* deleteItems();
 
 	int checkItemHover(int x, int y);
 

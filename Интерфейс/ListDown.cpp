@@ -2,8 +2,19 @@
 
 void DropDownList::render()
 {
-	if (!display)
+	if (!display) {
+		SDL_Rect clearRect = *sizes;
+		clearRect.x--;
+		clearRect.y--;
+		clearRect.w += 2;
+		clearRect.h += 2;
+		SDL_SetRenderDrawColor(renderer, Colors.background.r, Colors.background.g, Colors.background.b, Colors.background.a);
+
+		SDL_RenderFillRect(renderer, &clearRect);
+
 		return;
+	}
+		
 
 	// sizes Ч размеры главного объекта
 	// itemSizes Ч размеры одного эдемента списка
@@ -117,14 +128,16 @@ vector<DropDownItem*> DropDownList::getItems()
 	return List;
 }
 
-void DropDownList::clear()
+DropDownList* DropDownList::clear()
 {
 	mainLabel = "";
+	return this;
 }
 
-void DropDownList::deleteItems()
+DropDownList * DropDownList::deleteItems()
 {
 	List.clear();
+	return this;
 }
 
 int DropDownList::checkItemHover(int _x, int _y)

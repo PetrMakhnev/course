@@ -86,6 +86,5 @@ int DEC_String::operator-(DEC_String& obj)
 {
 	cout << "Производный класс 'Десятичная строка'. Сработала перегрузка оператора '-'" << endl;
 
-	if (isUnsignedInt() && obj.isUnsignedInt()) 
-		return atoi((const char *)str) - atoi((const char*)obj.str);
+	return atoi((const char*)str) - atoi((const char*)obj.str);
 }

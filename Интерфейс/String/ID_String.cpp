@@ -84,6 +84,8 @@ ID_String& ID_String::operator-(const ID_String& obj)
 {
 	cout << "Производный класс 'Строка-идентификатор'. Сработала перегрузка оператора '-'" << endl;
 
+	ID_String* backString = nullptr;
+
 	if (str != nullptr) {
 
 		char* _str = new char[length];
@@ -106,7 +108,7 @@ ID_String& ID_String::operator-(const ID_String& obj)
 					flag = true;
 			}
 
-			ID_String* backString = nullptr;
+			
 
 			if (newLength != 0) {
 				_str[newLength] = '\0';
@@ -120,5 +122,9 @@ ID_String& ID_String::operator-(const ID_String& obj)
 			}
 			return *backString;
 		}
+	}
+	else {
+		backString = new ID_String;
+		return *backString;
 	}
 }

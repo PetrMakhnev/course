@@ -187,7 +187,7 @@ int Interface::onExecute()
 
 		itemList2->add("Operator =", TEST_IDENTIFICATION_OPERATOR_EQUAL);
 		itemList2->add("To lower case", TEST_IDENTIFICATION_OPERATOR_TO_LOWER_CASE);
-		itemList2->add("Substraction", TEST_IDENTIFICATION_OPERATOR_EQUAL);
+		itemList2->add("Substraction", TEST_IDENTIFICATION_OPERATOR_SUBSTRACTION);
 
 		ItemLists.push_back(itemList2);
 	}
@@ -210,7 +210,7 @@ int Interface::onExecute()
 		SDL_Rect DropDownList_Rect3 = { 550, 300, 160, 20 };
 		SDL_Rect item_Rect = { -1, -1, 160, 20 };
 		DropDownList* DropDownList4 = new DropDownList(renderer, &DropDownList_Rect3, &item_Rect, DOWN_SIDE, "Fonts/verdana.ttf", 12);
-
+		DropDownList4->hide();
 		DropDownLists.push_back(DropDownList4);
 	}
 
@@ -219,7 +219,7 @@ int Interface::onExecute()
 		SDL_Rect DropDownList_Rect4 = { 750, 300, 160, 20 };
 		SDL_Rect item_Rect = { -1, -1, 160, 20 };
 		DropDownList* DropDownList5 = new DropDownList(renderer, &DropDownList_Rect4, &item_Rect, DOWN_SIDE, "Fonts/verdana.ttf", 12);
-
+		DropDownList5->hide();
 		DropDownLists.push_back(DropDownList5);
 	}
 
