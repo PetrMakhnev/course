@@ -16,8 +16,14 @@ Label::Label(SDL_Renderer* _renderer, SDL_Rect* _coord, int _type, string newStr
 
 void Label::render()
 {
-	if (!display)
+	if (!display) {
+		SDL_SetRenderDrawColor(renderer, Colors.background.r, Colors.background.g, Colors.background.b, Colors.background.a);
+		SDL_Rect clearRect = textRect;
+		clearRect.w = 160;
+		SDL_RenderFillRect(renderer, &clearRect);
 		return;
+	}
+		
 
 
 	if ((textSurface = TTF_RenderText_Blended(font, label.c_str() , Colors.element_text)) != nullptr) {
