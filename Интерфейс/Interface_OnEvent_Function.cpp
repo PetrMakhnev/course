@@ -54,7 +54,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 				Inputs.at(0)->unlock();
 				Inputs.at(0)->render();
 
-				cout << count_element << endl;
+				
 
 				TextFields.at(0)->add("Ввод 1-го элемента");
 				TextFields.at(0)->render();
@@ -91,7 +91,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					ptrBaseClass.push_back(new String(value.c_str()));
 					type_ptrBaseClasses.push_back(STRING_BASE);
 
-					DropDownLists.at(2)->add("Base class: " + value, 10 + count_ready);
+					DropDownLists.at(2)->add(value, 10 + count_ready);
 					DropDownLists.at(2)->render();
 
 					TextFields.at(0)->add("Тип класса: Базовый класс");
@@ -102,7 +102,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					ptrBaseClass.push_back(new ID_String(value.c_str()));
 					type_ptrBaseClasses.push_back(STRING_ID);
 
-					DropDownLists.at(2)->add("Identificator class: " + value, 10 + count_ready);
+					DropDownLists.at(2)->add(value, 10 + count_ready);
 					DropDownLists.at(2)->render();
 
 					TextFields.at(0)->add("Тип класса: Класс идентификатора");
@@ -114,7 +114,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					ptrBaseClass.push_back(new DEC_String(value.c_str()));
 					type_ptrBaseClasses.push_back(STRING_DEC);
 
-					DropDownLists.at(2)->add("Decimal class: " + value, 10 + count_ready);
+					DropDownLists.at(2)->add(value, 10 + count_ready);
 					DropDownLists.at(2)->render();
 
 					TextFields.at(0)->add("Тип класса: Десятичная строка");
@@ -182,6 +182,8 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					*ptrBaseClass.at(indexFirst) = *ptrBaseClass.at(indexSecond);
 					///
 
+					
+
 					DropDownLists.at(2)->deleteItems()->clear();
 
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
@@ -193,6 +195,9 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					Labels.at(5)->show(false);
 					Labels.at(4)->render();
 					Labels.at(5)->render();
+
+					Buttons.at(2)->hide();
+					Buttons.at(2)->render();
 
 					DropDownLists.at(3)->hide();
 					DropDownLists.at(4)->hide();
@@ -217,7 +222,9 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					TextFields.at(0)->add(len_str);
 					TextFields.at(0)->render();
-					cout << length;
+					
+					Buttons.at(2)->hide();
+					Buttons.at(2)->render();
 
 					Labels.at(4)->show(false);
 					Labels.at(5)->show(false);
@@ -256,6 +263,9 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					Labels.at(4)->render();
 					Labels.at(5)->render();
 
+					Buttons.at(2)->hide();
+					Buttons.at(2)->render();
+
 					DropDownLists.at(3)->hide();
 					DropDownLists.at(4)->hide();
 
@@ -287,6 +297,9 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					Labels.at(5)->show(false);
 					Labels.at(4)->render();
 					Labels.at(5)->render();
+
+					Buttons.at(2)->hide();
+					Buttons.at(2)->render();
 
 					DropDownLists.at(3)->hide();
 					DropDownLists.at(4)->hide();
@@ -326,6 +339,9 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					Labels.at(4)->render();
 					Labels.at(5)->render();
 
+					Buttons.at(2)->hide();
+					Buttons.at(2)->render();
+
 					DropDownLists.at(3)->hide();
 					DropDownLists.at(4)->hide();
 
@@ -348,12 +364,10 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					if (isUnInt) {
 						TextFields.at(0)->add("Преобразование к Unsigned Int возможно");
 						TextFields.at(0)->render();
-						cout << "YES" << endl;
 					}
 					else {
 						TextFields.at(0)->add("Преобразование к Unsigned Int НЕ возможно");
 						TextFields.at(0)->render();
-						cout << "NO" << endl;
 					}
 					///
 
@@ -368,6 +382,9 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					Labels.at(5)->show(false);
 					Labels.at(4)->render();
 					Labels.at(5)->render();
+
+					Buttons.at(2)->hide();
+					Buttons.at(2)->render();
 
 					DropDownLists.at(3)->hide();
 					DropDownLists.at(4)->hide();
@@ -392,7 +409,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					TextFields.at(0)->add("Результат вычитания равен: " + result);
 					TextFields.at(0)->render();
-					cout << "Результат вычитания равен: " << result << endl;
+					
 					///
 
 					DropDownLists.at(2)->deleteItems()->clear();
@@ -406,6 +423,9 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					Labels.at(5)->show(false);
 					Labels.at(4)->render();
 					Labels.at(5)->render();
+
+					Buttons.at(2)->hide();
+					Buttons.at(2)->render();
 
 					DropDownLists.at(3)->hide();
 					DropDownLists.at(4)->hide();
@@ -492,9 +512,12 @@ void Interface::mouseButtonUp(SDL_Event* event)
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов базового класса");
 						TextFields.at(0)->render();
-						cout << "Слишком мало объектов базового класса (необходимо не меньше 2)" << endl;
+						
 						return;
 					}
+
+					Buttons.at(2)->show();
+					Buttons.at(2)->render();
 
 					DropDownLists.at(3)->show();
 					DropDownLists.at(4)->show();
@@ -546,9 +569,12 @@ void Interface::mouseButtonUp(SDL_Event* event)
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов базового класса");
 						TextFields.at(0)->render();
-						cout << "Слишком мало объектов базового класса (необходимо не меньше 1)" << endl;
+						
 						return;
 					}
+
+					Buttons.at(2)->show();
+					Buttons.at(2)->render();
 
 					DropDownLists.at(3)->show();
 
@@ -597,9 +623,12 @@ void Interface::mouseButtonUp(SDL_Event* event)
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов класса идентификатора");
 						TextFields.at(0)->render();
-						cout << "Слишком мало объектов класа идентификатора (необходимо не меньше 1)" << endl;
+						
 						return;
 					}
+
+					Buttons.at(2)->show();
+					Buttons.at(2)->render();
 
 					DropDownLists.at(3)->show();
 
@@ -617,7 +646,6 @@ void Interface::mouseButtonUp(SDL_Event* event)
 						if (type_ptrBaseClasses.at(i) == STRING_BASE) {
 							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
-							
 						}
 						else if (type_ptrBaseClasses.at(i) == STRING_ID) {
 							DropDownLists.at(3)->add(newElement, 10 + i);
@@ -648,9 +676,12 @@ void Interface::mouseButtonUp(SDL_Event* event)
 						// ошибка
 						TextFields.at(0)->add("Слишком мало объектов класса идентификатора");
 						TextFields.at(0)->render();
-						cout << "Слишком мало объектов базового класса (необходимо не меньше 2)" << endl;
+						
 						return;
 					}
+
+					Buttons.at(2)->show();
+					Buttons.at(2)->render();
 
 					nowOperation = TEST_IDENTIFICATION_OPERATOR_EQUAL;
 
@@ -703,9 +734,12 @@ void Interface::mouseButtonUp(SDL_Event* event)
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов класса идентификатора");
 						TextFields.at(0)->render();
-						cout << "Слишком мало объектов базового класса (необходимо не меньше 2)" << endl;
+						
 						return;
 					}
+
+					Buttons.at(2)->show();
+					Buttons.at(2)->render();
 
 					nowOperation = TEST_IDENTIFICATION_OPERATOR_SUBSTRACTION;
 
@@ -760,9 +794,12 @@ void Interface::mouseButtonUp(SDL_Event* event)
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов класа десятичного числа");
 						TextFields.at(0)->render();
-						cout << "Слишком мало объектов базового класса (необходимо не меньше 1)" << endl;
+						
 						return;
 					}
+
+					Buttons.at(2)->show();
+					Buttons.at(2)->render();
 
 					nowOperation = TEST_DECIMAL_IS_UNSIGNED_INT;
 
@@ -813,9 +850,12 @@ void Interface::mouseButtonUp(SDL_Event* event)
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов класа десятичного числа");
 						TextFields.at(0)->render();
-						cout << "Слишком мало объектов базового класса (необходимо не меньше 2)" << endl;
+						
 						return;
 					}
+
+					Buttons.at(2)->show();
+					Buttons.at(2)->render();
 
 					nowOperation = TEST_DECIMAL_SUBTRACTION;
 
@@ -896,7 +936,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 			DropDownLists.at(i)->open(false);
 			DropDownLists.at(i)->render();
 
-			cout << flag << endl;
+		
 					
 		}
 		else {

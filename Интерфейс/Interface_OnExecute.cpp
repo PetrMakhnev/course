@@ -149,7 +149,7 @@ int Interface::onExecute()
 
 
 	// Выпадающий список со всеми классами //
-	SDL_Rect mainList2 = { 850, 10, 160, 20 };
+	SDL_Rect mainList2 = { 850, 100, 160, 20 };
 	SDL_Rect item2 = { -1, -1, 200, 20 };
 	DropDownList* DropDownList3 = new DropDownList(renderer, &mainList2, &item2, LEFT_SIDE, "Fonts/verdana.ttf", 12);
 
@@ -167,7 +167,7 @@ int Interface::onExecute()
 	SDL_Rect itemList_ItemRect = { -1, -1, 160, 20 };
 	// Выпадающий список для базового класса //
 	{
-		SDL_Rect itemListRect1 = { 850, 100, 160, 20 };
+		SDL_Rect itemListRect1 = { 850, 125, 160, 20 };
 		
 
 		ItemList_* itemList1 = new ItemList_(renderer, &itemListRect1, &itemList_ItemRect, "String", "Fonts/verdana.ttf", 12);
@@ -180,7 +180,7 @@ int Interface::onExecute()
 
 	// Выпадающий список для класса идентификатора //
 	{
-		SDL_Rect itemListRect2 = { 850, 125, 160, 20 };
+		SDL_Rect itemListRect2 = { 850, 150, 160, 20 };
 	
 
 		ItemList_* itemList2 = new ItemList_(renderer, &itemListRect2, &itemList_ItemRect, "Identificator", "Fonts/verdana.ttf", 12);
@@ -194,7 +194,7 @@ int Interface::onExecute()
 
 	// Выпадающий список для класса десятичной строки //
 	{
-		SDL_Rect itemListRect3 = { 850, 150, 160, 20 };
+		SDL_Rect itemListRect3 = { 850, 175, 160, 20 };
 		
 
 		ItemList_* itemList3 = new ItemList_(renderer, &itemListRect3, &itemList_ItemRect, "Decimal", "Fonts/verdana.ttf", 12);
@@ -207,12 +207,12 @@ int Interface::onExecute()
 
 	// Список для выбора первого операнда //
 	{
-		SDL_Rect coord4 = { 750, 200, 0, 20 };
+		SDL_Rect coord4 = { 750, 220, 0, 20 };
 		Label* label4 = new Label(renderer, &coord4, BY_LEFT, "First operand", "Fonts/verdana.ttf", 11);
 		label4->show(false);
 		Labels.push_back(label4);
 
-		SDL_Rect DropDownList_Rect3 = { 750, 220, 160, 20 };
+		SDL_Rect DropDownList_Rect3 = { 750, 240, 160, 20 };
 		SDL_Rect item_Rect = { -1, -1, 160, 20 };
 		DropDownList* DropDownList4 = new DropDownList(renderer, &DropDownList_Rect3, &item_Rect, DOWN_SIDE, "Fonts/verdana.ttf", 12);
 		DropDownList4->hide();
@@ -221,12 +221,12 @@ int Interface::onExecute()
 
 	// Список для выбора второго операнда //
 	{
-		SDL_Rect coord5 = { 930, 200, 0, 20 };
+		SDL_Rect coord5 = { 930, 220, 0, 20 };
 		Label* label5 = new Label(renderer, &coord5, BY_LEFT, "Second operand", "Fonts/verdana.ttf", 11);
 		label5->show(false);
 		Labels.push_back(label5);
 
-		SDL_Rect DropDownList_Rect4 = { 930, 220, 160, 20 };
+		SDL_Rect DropDownList_Rect4 = { 930, 240, 160, 20 };
 		SDL_Rect item_Rect = { -1, -1, 160, 20 };
 		DropDownList* DropDownList5 = new DropDownList(renderer, &DropDownList_Rect4, &item_Rect, DOWN_SIDE, "Fonts/verdana.ttf", 12);
 		DropDownList5->hide();
@@ -243,7 +243,7 @@ int Interface::onExecute()
 			BUTTON_OK_PERFORM_OPERATION,
 			"Fonts/verdana.ttf", 12
 		);
-
+		newButton3->hide();
 		Buttons.push_back(newButton3);
 	}
 
@@ -260,8 +260,9 @@ int Interface::onExecute()
 
 
 
-
-
+	SDL_Rect coord6 = { 850, 80, 0, 20 };
+	Label* label6 = new Label(renderer, &coord6, BY_LEFT, "All classes", "Fonts/verdana.ttf", 11);
+	Labels.push_back(label6);
 
 
 	render();

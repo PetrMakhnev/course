@@ -2,8 +2,19 @@
 
 void Button_::render()
 {
-	if (!display)
+	if (!display) {
+		SDL_Rect clearRect = *sizes;
+		clearRect.x -= 2;
+		clearRect.y -= 2;
+		clearRect.w += 4;
+		clearRect.h += 4;
+
+		SDL_SetRenderDrawColor(renderer, Colors.background.r, Colors.background.g, Colors.background.b, Colors.background.a);
+
+		SDL_RenderFillRect(renderer, sizes);
+		SDL_RenderPresent(renderer);
 		return;
+	}
 
 	SDL_Texture* textTexture;
 	SDL_Surface* textSurface;
