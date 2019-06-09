@@ -16,9 +16,7 @@ Interface::Interface()
 
 	nowOperation = 0;
 
-	count_base = 0;
-	count_id = 0;
-	count_dec = 0;
+
 }
 
 Interface::Interface(short width, short height)
@@ -38,14 +36,12 @@ Interface::Interface(short width, short height)
 	ready_fill_classes = false;
 	nowOperation = 0;
 
-	count_base = 0;
-	count_id = 0;
-	count_dec = 0;
+	already_render_drop = nullptr;
 }
 
 Interface::~Interface()
 {
-
+	delete[] already_render_drop;
 }
 
 bool Interface::init()
@@ -76,6 +72,7 @@ bool Interface::init()
 		printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
 		return false;
 	}
+
 	
 	return true;
 }
@@ -93,4 +90,5 @@ void Interface::quit()
 	running = false;
 
 	ready_fill_classes = false;
+
 }

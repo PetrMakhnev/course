@@ -13,10 +13,6 @@ void Interface::render()
 		Buttons.at(i)->render();
 	}
 
-	for (int i = 0; i < Inputs.size(); i++) {
-		Inputs.at(i)->render();
-	}
-
 	for (int i = 0; i < ItemLists.size(); i++) {
 		ItemLists.at(i)->render();
 	}
@@ -31,6 +27,10 @@ void Interface::render()
 
 	for (int i = 0; i < TextFields.size(); i++) {
 		TextFields.at(i)->render();
+	}
+
+	for (int i = 0; i < Inputs.size(); i++) {
+		Inputs.at(i)->render();
 	}
 	
 }

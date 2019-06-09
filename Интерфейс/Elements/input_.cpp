@@ -2,8 +2,21 @@
 
 void Input_::render()
 {
-	if (!display)
+	if (!display) {
+		SDL_Rect* clearRect = sizes;
+
+		clearRect->x--;
+		clearRect->y--; clearRect;
+		clearRect->w += 2;
+		clearRect->h += 2;
+
+		SDL_SetRenderDrawColor(renderer, Colors.background.r, Colors.background.g, Colors.background.b, Colors.background.a);
+
+		SDL_RenderFillRect(renderer, clearRect);
+
 		return;
+	}
+		
 
 	// Отрисовка обводки
 	{

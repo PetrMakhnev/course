@@ -8,14 +8,12 @@ void DropDownList::render()
 		clearRect.y--;
 		clearRect.w += 2;
 		clearRect.h += 2;
+
 		SDL_SetRenderDrawColor(renderer, Colors.background.r, Colors.background.g, Colors.background.b, Colors.background.a);
-
 		SDL_RenderFillRect(renderer, &clearRect);
-
 		return;
 	}
 		
-
 	// sizes — размеры главного объекта
 	// itemSizes — размеры одного эдемента списка
 
@@ -44,23 +42,28 @@ void DropDownList::render()
 		SDL_RenderFillRect(renderer, &border);
 	}
 
-	if (block)
-		SDL_SetRenderDrawColor(renderer, Colors.element_blocked.r, Colors.element_blocked.g, Colors.element_blocked.b, Colors.element_blocked.a);
-	else
-		SDL_SetRenderDrawColor(renderer, Colors.element_background_unfocus.r, Colors.element_background_unfocus.g, Colors.element_background_unfocus.b, Colors.element_background_unfocus.a);
-
+	// Отрисовка тела
+	{
+		if (block)
+			SDL_SetRenderDrawColor(renderer, Colors.element_blocked.r, Colors.element_blocked.g, Colors.element_blocked.b, Colors.element_blocked.a);
+		else
+			SDL_SetRenderDrawColor(renderer, Colors.element_background_unfocus.r, Colors.element_background_unfocus.g, Colors.element_background_unfocus.b, Colors.element_background_unfocus.a);
+	}
 	
-	SDL_Rect dropButtonRect = { sizes->x + sizes->w - sizes->h, sizes->y + 3, 15, 15 };
-
-	SDL_RenderFillRect(renderer, sizes);
+	// Отрисовка кнопки
+	SDL_Rect dropButtonRect;
+	{
+		dropButtonRect = { sizes->x + sizes->w - 15, sizes->y + 6, 8, 8 };
+		SDL_RenderFillRect(renderer, sizes);
+	}
 
 	renderLabel(mainLabel, sizes, LEFT_ALIGN);
-
 	SDL_RenderCopy(renderer, dropButton, NULL, &dropButtonRect);
+
 
 	if (show_menu && !block) {
 
-		for (int i = 0; i < List.size(); i++)
+		for (size_t i = 0; i < List.size(); i++)
 		{
 			if (List.at(i)->Block()) {
 				SDL_SetRenderDrawColor(renderer, Colors.element_blocked.r, Colors.element_blocked.g, Colors.element_blocked.b, Colors.element_blocked.a);

@@ -16,6 +16,7 @@ public:
 	bool isCorrect(char* str);
 	void toLowerCase();
 	void print();
+	int indexOf(char symbol);
 	ID_String& operator- (const ID_String& obj);
 
 };

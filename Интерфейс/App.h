@@ -15,14 +15,14 @@
 
 #include "String/String.h"
 #include "String/ID_String.h"
-#include "String/DEC_String.h"
+#include "String/BIN_String.h"
 
 using namespace std;
 
 enum STRING_CLASS_ID {
 	STRING_BASE,
 	STRING_ID,
-	STRING_DEC
+	STRING_BIN
 };
 
 enum INTERFACE_STATES {
@@ -59,6 +59,9 @@ private:
 	vector <TextField*> TextFields;
 	//
 
+	//
+	bool* already_render_drop;
+
 	// Элементы приложения
 	bool ready_fill_classes;
 
@@ -69,10 +72,7 @@ private:
 
 	int nowOperation;
 
-	// Количество элементов каждого класса
-	int count_base;
-	int count_id;
-	int count_dec;
+	
 
 public:
 	Interface();

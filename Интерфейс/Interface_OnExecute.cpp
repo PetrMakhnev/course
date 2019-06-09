@@ -4,67 +4,6 @@ int Interface::onExecute()
 {
 	init();
 
-/*
-	SDL_Rect rect1 = { 320, 100, 130, 25 };
-	Button_* newButton1 = new Button_(
-		renderer,
-		&rect1,
-		"Count element",
-		BUTTON_INITIALIZE_COUNT_ELEMENT,
-		"Fonts/verdana.ttf", 12
-	);
-	Buttons.push_back(newButton1);
-
-
-	SDL_Rect rect = { 320, 160, 130, 20 };
-	Input_* newInput = new Input_(renderer, &rect, INPUT_COUNT_ELEMENT, "Fonts/verdana.ttf", 12);
-	Inputs.push_back(newInput);
-
-
-	SDL_Rect coord = { 320, 140, 0, 20 };
-	Label* label = new Label(renderer, &coord, BY_LEFT, "Count of Elements", "Fonts/verdana.ttf", 11);
-
-	Labels.push_back(label);
-
-
-	SDL_Rect rect2 = { 320, 190, 130, 25 };
-	Button_* newButton2 = new Button_(
-		renderer,
-		&rect2,
-		"OK",
-		BUTTON_INITIALIZE_COUNT_ELEMENT,
-		"Fonts/verdana.ttf", 12
-	);
-	Buttons.push_back(newButton2);
-
-
-
-
-	SDL_Rect mainList = { 320, 260, 130, 25 };
-	SDL_Rect item = { -1, -1, 130, 25 };
-
-	ItemList_* itemList = new ItemList_(renderer, &mainList, &item, "Menu", "Fonts/verdana.ttf", 12);
-
-	itemList->add("operator =", TEST_BITSTRING_OPERATOR_EQUATE);
-	itemList->add("operator ==", TEST_BITSTRING_OPERATOR_EQUAL);
-	itemList->add("operator -", TEST_BITSTRING_OPERATOR_INDEX);
-
-	ItemLists.push_back(itemList);
-
-
-	SDL_Rect mainList1 = { 320, 350, 130, 25 };
-	SDL_Rect item1 = { -1, -1, 130, 25 };
-
-	ItemList_* itemList1 = new ItemList_(renderer, &mainList1, &item1, "Menu", "Fonts/verdana.ttf", 12);
-
-	itemList1->add("operator =", TEST_BITSTRING_OPERATOR_EQUATE);
-	itemList1->add("operator ==", TEST_BITSTRING_OPERATOR_EQUAL);
-	itemList1->add("operator -", TEST_BITSTRING_OPERATOR_INDEX);
-
-	ItemLists.push_back(itemList1);
-
-
-	*/
 
 	SDL_Rect coord = { 520, 80, 0, 20 };
 	Label* label = new Label(renderer, &coord, BY_LEFT, "Count of Elements", "Fonts/verdana.ttf", 11);
@@ -119,7 +58,7 @@ int Interface::onExecute()
 
 	DropDownList2->add("Base class", DROP_BASE_CLASS);
 	DropDownList2->add("Identification class", DROP_ID_CLASS);
-	DropDownList2->add("Dec string class", DROP_DEC_CLASS);
+	DropDownList2->add("Binary string class", DROP_BIN_CLASS);
 
 	DropDownList2->blocked();
 
@@ -187,7 +126,8 @@ int Interface::onExecute()
 
 		itemList2->add("Operator =", TEST_IDENTIFICATION_OPERATOR_EQUAL);
 		itemList2->add("To lower case", TEST_IDENTIFICATION_OPERATOR_TO_LOWER_CASE);
-		itemList2->add("Substraction", TEST_IDENTIFICATION_OPERATOR_SUBSTRACTION);
+		itemList2->add("Substraction", TEST_IDENTIFICATION_OPERATOR_SUBTRACTION);
+		itemList2->add("Index of symbol", TEST_IDENTIFICATION_INDEX_OF);
 
 		ItemLists.push_back(itemList2);
 	}
@@ -197,10 +137,10 @@ int Interface::onExecute()
 		SDL_Rect itemListRect3 = { 850, 175, 160, 20 };
 		
 
-		ItemList_* itemList3 = new ItemList_(renderer, &itemListRect3, &itemList_ItemRect, "Decimal", "Fonts/verdana.ttf", 12);
+		ItemList_* itemList3 = new ItemList_(renderer, &itemListRect3, &itemList_ItemRect, "Binary", "Fonts/verdana.ttf", 12);
 
-		itemList3->add("It may be Unsigned Int?", TEST_DECIMAL_IS_UNSIGNED_INT);
-		itemList3->add("Substraction", TEST_DECIMAL_SUBTRACTION);
+		itemList3->add("Reverse", TEST_BINARY_REVERSE);
+		itemList3->add("Subtraction", TEST_BINARY_SUBTRACTION);
 
 		ItemLists.push_back(itemList3);
 	}
@@ -233,6 +173,22 @@ int Interface::onExecute()
 		DropDownLists.push_back(DropDownList5);
 	}
 
+
+	// Поле для ввода символа для поиска //
+	{
+		SDL_Rect coord8 = { 930, 220, 0, 20 };
+		Label* label8 = new Label(renderer, &coord8, BY_LEFT, "Field for symbol", "Fonts/verdana.ttf", 11);
+		label8->show(false);
+		Labels.push_back(label8);
+
+		SDL_Rect coord9 = { 930, 240, 160, 18 };
+		Input_* newInput1 = new Input_(renderer, &coord9, INPUT_SYMBOL_INDEX_OF, "Fonts/verdana.ttf", 12);
+		newInput1->hide();
+		Inputs.push_back(newInput1);
+	}
+
+
+
 	// Кнопка ввода информации
 	{
 		SDL_Rect rect3 = { 850, 450, 160, 20 };
@@ -260,9 +216,23 @@ int Interface::onExecute()
 
 
 
-	SDL_Rect coord6 = { 850, 80, 0, 20 };
-	Label* label6 = new Label(renderer, &coord6, BY_LEFT, "All classes", "Fonts/verdana.ttf", 11);
-	Labels.push_back(label6);
+	SDL_Rect coord7 = { 850, 80, 0, 20 };
+	Label* label7 = new Label(renderer, &coord7, BY_LEFT, "All classes", "Fonts/verdana.ttf", 11);
+	Labels.push_back(label7);
+
+
+	SDL_Rect rect21 = { 1080, 20, 100, 20 };
+	Button_* newButton21 = new Button_(
+		renderer,
+		&rect21,
+		"Quit",
+		BUTTON_QUIT,
+		"Fonts/verdana.ttf", 12
+	);
+	Buttons.push_back(newButton21);
+
+
+	already_render_drop = new bool[DropDownLists.size()];
 
 
 	render();

@@ -5,16 +5,38 @@ void Interface::mouseMotion(SDL_Event* event) {
 	int x, y;
 	SDL_GetMouseState(&x, &y);
 
+	bool already_render_item = false;
+	int already_render_item_index = -1;
 	for (int i = 0; i < ItemLists.size(); i++) {
-		if (ItemLists.at(i)->checkItemHover(x, y))
-			ItemLists.at(i)->render();
+		if (ItemLists.at(i)->checkItemHover(x, y)) {
+			if (!already_render_item || i != already_render_item_index) {
+				already_render_item = true;
+				already_render_item_index = i;
+				ItemLists.at(i)->render();
+			}
+		}
+		else {
+			already_render_item = false;
+			already_render_item_index = -1;
+		}
 		
 	}
+	
 
+	int count = 0;
 	for (int i = 0; i < DropDownLists.size(); i++) {
-		if (DropDownLists.at(i)->checkItemHover(x, y))
-			DropDownLists.at(i)->render();
-
+		if (DropDownLists.at(i)->checkItemHover(x, y)) {
+			if (!already_render_drop[i]) {
+				already_render_drop[i] = true;
+				DropDownLists.at(i)->render();
+				count++;
+				cout << count << endl;
+				
+			}
+		}	
+		else {
+			already_render_drop[i] = false;
+		}
 	}
 }
 
@@ -110,14 +132,14 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					break;
 
-				case DROP_DEC_CLASS:
-					ptrBaseClass.push_back(new DEC_String(value.c_str()));
-					type_ptrBaseClasses.push_back(STRING_DEC);
+				case DROP_BIN_CLASS:
+					ptrBaseClass.push_back(new BIN_String(value.c_str()));
+					type_ptrBaseClasses.push_back(STRING_BIN);
 
 					DropDownLists.at(2)->add(value, 10 + count_ready);
 					DropDownLists.at(2)->render();
 
-					TextFields.at(0)->add("Тип класса: Десятичная строка");
+					TextFields.at(0)->add("Тип класса: Бинарная строка");
 					TextFields.at(0)->render();
 					break;
 
@@ -312,7 +334,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					break;
 				}
-				case TEST_IDENTIFICATION_OPERATOR_SUBSTRACTION: {
+				case TEST_IDENTIFICATION_OPERATOR_SUBTRACTION: {
 
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
 					int indexSecond = DropDownLists.at(4)->getFlag() - 10;
@@ -353,22 +375,70 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					break;
 				}
-				
-				case TEST_DECIMAL_IS_UNSIGNED_INT: {
+				case TEST_IDENTIFICATION_INDEX_OF: {
+
+					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
+
+
+					char symbol = Inputs.at(1)->getValue().at(0);
+
+					ID_String* first = (ID_String*)(ptrBaseClass.at(indexFirst));
+
+					int place = 0;
+					/// ОСНОВНОЕ ПРИСВАИВАНИЕ
+					char* strs = new char[2];
+					strs[0] = symbol;
+					strs[1] = '\0';
+
+					string symbolStr(strs);
+					delete[] strs;
+					string value = first->getString();
+
+					char* num = new char[5];
+
+					place = first->indexOf(symbol);
+					_itoa(place, num, 10);
+					string number(num);
+					if (place != -1)
+						TextFields.at(0)->add("Символ " + symbolStr + " найден в строке " + value + " на " + number + "-тои месте");
+					else 
+						TextFields.at(0)->add("Символ " + symbolStr + " НЕ найден в строке " + value);
+					
+					TextFields.at(0)->render();
+					///
+
+					Labels.at(6)->show(false);
+					Labels.at(4)->show(false);
+					Labels.at(6)->render();
+					Labels.at(4)->render();
+
+					Buttons.at(2)->hide();
+					Buttons.at(2)->render();
+
+					Inputs.at(1)->clear();
+					Inputs.at(1)->hide();
+					Inputs.at(1)->render();
+
+					DropDownLists.at(3)->hide();
+					DropDownLists.at(3)->render();
+					
+
+					nowOperation = NULLELE;
+					break;
+				}
+
+				case TEST_BINARY_REVERSE: {
 
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
 
 					/// ОСНОВНОЕ ПРИСВАИВАНИЕ
-					bool isUnInt = ((DEC_String *)(ptrBaseClass.at(indexFirst)))->isUnsignedInt();
+					((BIN_String*)(ptrBaseClass.at(indexFirst)))->invert();
+
+					string text = ((BIN_String*)(ptrBaseClass.at(indexFirst)))->getString();
+					TextFields.at(0)->add("Результат инвертирования равен: " + text);
+					TextFields.at(0)->render();
+
 					
-					if (isUnInt) {
-						TextFields.at(0)->add("Преобразование к Unsigned Int возможно");
-						TextFields.at(0)->render();
-					}
-					else {
-						TextFields.at(0)->add("Преобразование к Unsigned Int НЕ возможно");
-						TextFields.at(0)->render();
-					}
 					///
 
 					DropDownLists.at(2)->deleteItems()->clear();
@@ -387,27 +457,27 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					Buttons.at(2)->render();
 
 					DropDownLists.at(3)->hide();
-					DropDownLists.at(4)->hide();
 
 					DropDownLists.at(2)->render();
 					DropDownLists.at(3)->render();
-					DropDownLists.at(4)->render();
+
 
 					nowOperation = NULLELE;
 
 					break;
 				}
-				case TEST_DECIMAL_SUBTRACTION: {
+				case TEST_BINARY_SUBTRACTION: {
 					int indexFirst = DropDownLists.at(3)->getFlag() - 10;
 					int indexSecond = DropDownLists.at(4)->getFlag() - 10;
 
 					/// ОСНОВНОЕ ПРИСВАИВАНИЕ
-					DEC_String* first = (DEC_String*)(ptrBaseClass.at(indexFirst));
-					DEC_String* second = (DEC_String*)(ptrBaseClass.at(indexSecond));
+					BIN_String* first = (BIN_String*)(ptrBaseClass.at(indexFirst));
+					BIN_String* second = (BIN_String*)(ptrBaseClass.at(indexSecond));
+					BIN_String result;
+					result = *first - *second;
 
-					int result = *first - *second;
-
-					TextFields.at(0)->add("Результат вычитания равен: " + result);
+					string text = result.getString();
+					TextFields.at(0)->add("Результат вычитания равен: " + text);
 					TextFields.at(0)->render();
 					
 					///
@@ -444,6 +514,10 @@ void Interface::mouseButtonDown(SDL_Event* event)
 				break;
 			}
 
+			case BUTTON_QUIT: {
+				quit();
+				break;
+			}
 			default: break;
 			}
 		}
@@ -545,7 +619,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
 							
 						}
-						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+						else if (type_ptrBaseClasses.at(i) == STRING_BIN) {
 							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
 							
@@ -599,7 +673,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
 							
 						}
-						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+						else if (type_ptrBaseClasses.at(i) == STRING_BIN) {
 							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
 							
@@ -607,7 +681,6 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					}
 
 					DropDownLists.at(3)->render();
-					DropDownLists.at(4)->render();
 					break;
 				}
 				
@@ -652,7 +725,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							DropDownLists.at(4)->add(newElement, 10 + i);
 							
 						}
-						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+						else if (type_ptrBaseClasses.at(i) == STRING_BIN) {
 							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
 							
@@ -660,7 +733,6 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					}
 
 					DropDownLists.at(3)->render();
-					DropDownLists.at(4)->render();
 
 					break;
 				}
@@ -710,7 +782,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							DropDownLists.at(4)->add(newElement, 10 + i);
 								
 						}
-						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+						else if (type_ptrBaseClasses.at(i) == STRING_BIN) {
 							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
 								
@@ -723,7 +795,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					break;
 				}
 
-				case TEST_IDENTIFICATION_OPERATOR_SUBSTRACTION: {
+				case TEST_IDENTIFICATION_OPERATOR_SUBTRACTION: {
 
 					short count = 0;
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
@@ -741,7 +813,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					Buttons.at(2)->show();
 					Buttons.at(2)->render();
 
-					nowOperation = TEST_IDENTIFICATION_OPERATOR_SUBSTRACTION;
+					nowOperation = TEST_IDENTIFICATION_OPERATOR_SUBTRACTION;
 
 					DropDownLists.at(3)->show();
 					DropDownLists.at(4)->show();
@@ -768,7 +840,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							DropDownLists.at(4)->add(newElement, 10 + i);
 								
 						}
-						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+						else if (type_ptrBaseClasses.at(i) == STRING_BIN) {
 							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
 								
@@ -782,12 +854,70 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					break;
 				}
 
-
-				case TEST_DECIMAL_IS_UNSIGNED_INT: {				
+				case TEST_IDENTIFICATION_INDEX_OF: {
 
 					short count = 0;
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
-						if (type_ptrBaseClasses.at(i) == STRING_DEC)
+						if (type_ptrBaseClasses.at(i) == STRING_ID)
+							count++;
+
+					if (count < 1) {
+						// ошибка 
+						TextFields.at(0)->add("Слишком мало объектов класса идентификатора");
+						TextFields.at(0)->render();
+
+						return;
+					}
+
+					Buttons.at(2)->show();
+					Buttons.at(2)->render();
+
+					DropDownLists.at(3)->show();
+
+					Labels.at(6)->show(true);
+					Labels.at(6)->render();
+
+					Inputs.at(1)->show();
+					Inputs.at(1)->render();
+
+					nowOperation = TEST_IDENTIFICATION_INDEX_OF;
+
+					Labels.at(4)->show(true);
+					Labels.at(4)->render();
+
+					DropDownLists.at(3)->deleteItems()->clear();
+					DropDownLists.at(4)->deleteItems()->clear();
+
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++) {
+						string newElement(ptrBaseClass.at(i)->getString());
+
+						if (type_ptrBaseClasses.at(i) == STRING_BASE) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_ID) {
+							DropDownLists.at(3)->add(newElement, 10 + i);
+							DropDownLists.at(4)->add(newElement, 10 + i);
+
+						}
+						else if (type_ptrBaseClasses.at(i) == STRING_BIN) {
+							DropDownLists.at(3)->add(newElement, 10 + i)->Block(true);
+							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
+
+						}
+					}
+
+					DropDownLists.at(3)->render();
+					
+					break;
+				}
+
+
+				case TEST_BINARY_REVERSE: {
+
+					short count = 0;
+					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
+						if (type_ptrBaseClasses.at(i) == STRING_BIN)
 							count++;
 
 					if (count < 1) {
@@ -801,7 +931,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					Buttons.at(2)->show();
 					Buttons.at(2)->render();
 
-					nowOperation = TEST_DECIMAL_IS_UNSIGNED_INT;
+					nowOperation = TEST_BINARY_REVERSE;
 
 					DropDownLists.at(3)->show();
 
@@ -825,7 +955,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
 								
 						}
-						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+						else if (type_ptrBaseClasses.at(i) == STRING_BIN) {
 							DropDownLists.at(3)->add(newElement, 10 + i);
 							DropDownLists.at(4)->add(newElement, 10 + i);
 								
@@ -839,16 +969,16 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					break;
 				}
 					
-				case TEST_DECIMAL_SUBTRACTION: {
+				case TEST_BINARY_SUBTRACTION: {
 
 					short count = 0;
 					for (size_t i = 0; i < type_ptrBaseClasses.size(); i++)
-						if (type_ptrBaseClasses.at(i) == STRING_DEC)
+						if (type_ptrBaseClasses.at(i) == STRING_BIN)
 							count++;
 
 					if (count < 2) {
 						// ошибка 
-						TextFields.at(0)->add("Слишком мало объектов класа десятичного числа");
+						TextFields.at(0)->add("Слишком мало объектов класса двоичного числа");
 						TextFields.at(0)->render();
 						
 						return;
@@ -857,7 +987,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					Buttons.at(2)->show();
 					Buttons.at(2)->render();
 
-					nowOperation = TEST_DECIMAL_SUBTRACTION;
+					nowOperation = TEST_BINARY_SUBTRACTION;
 
 					DropDownLists.at(3)->show();
 					DropDownLists.at(4)->show();
@@ -884,7 +1014,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 							DropDownLists.at(4)->add(newElement, 10 + i)->Block(true);
 								
 						}
-						else if (type_ptrBaseClasses.at(i) == STRING_DEC) {
+						else if (type_ptrBaseClasses.at(i) == STRING_BIN) {
 							DropDownLists.at(3)->add(newElement, 10 + i);
 							DropDownLists.at(4)->add(newElement, 10 + i);
 								
@@ -919,8 +1049,10 @@ void Interface::mouseButtonUp(SDL_Event* event)
 			if (!DropDownLists.at(i)->open()) {
 
 				for (int j = 0; j < DropDownLists.size(); j++) {
-					DropDownLists.at(j)->open(false);
-					DropDownLists.at(j)->render();
+					if (DropDownLists.at(j)->open()) {
+						DropDownLists.at(j)->open(false);
+						DropDownLists.at(j)->render();
+					}
 				}
 
 				DropDownLists.at(i)->open(true);

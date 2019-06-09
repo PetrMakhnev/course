@@ -4,7 +4,9 @@
 
 enum InputTypes {
 	INPUT_COUNT_ELEMENT,
-	INPUT_START_VALUE
+	INPUT_START_VALUE,
+
+	INPUT_SYMBOL_INDEX_OF
 };
 
 class Input_ : public Control {

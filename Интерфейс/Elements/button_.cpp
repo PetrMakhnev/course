@@ -4,14 +4,14 @@ void Button_::render()
 {
 	if (!display) {
 		SDL_Rect clearRect = *sizes;
-		clearRect.x -= 2;
-		clearRect.y -= 2;
-		clearRect.w += 4;
-		clearRect.h += 4;
+		clearRect.x--;
+		clearRect.y--;
+		clearRect.w += 2;
+		clearRect.h += 2;
 
 		SDL_SetRenderDrawColor(renderer, Colors.background.r, Colors.background.g, Colors.background.b, Colors.background.a);
 
-		SDL_RenderFillRect(renderer, sizes);
+		SDL_RenderFillRect(renderer, &clearRect);
 		SDL_RenderPresent(renderer);
 		return;
 	}

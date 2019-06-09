@@ -4,7 +4,7 @@
 enum DropElement {
 	DROP_BASE_CLASS = 10,
 	DROP_ID_CLASS = 11,
-	DROP_DEC_CLASS = 12
+	DROP_BIN_CLASS = 12
 };
 
 enum TYPE {

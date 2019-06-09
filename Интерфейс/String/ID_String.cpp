@@ -75,9 +75,13 @@ void ID_String::toLowerCase()
 	cout << "Производный класс 'Строка-идентификатор'. Сработала функция приведения строки в нижний регистр" << endl;
 }
 
-void ID_String::print()
+int ID_String::indexOf(char symbol)
 {
-	cout << str << endl;
+	for (size_t i = 0; i < length; i++)
+		if (str[i] == symbol)
+			return i;
+
+	return -1;
 }
 
 ID_String& ID_String::operator-(const ID_String& obj)
