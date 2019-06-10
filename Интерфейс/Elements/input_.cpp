@@ -48,7 +48,7 @@ void Input_::render()
 
 	SDL_RenderFillRect(renderer, sizes);
 
-	textRender();
+	renderLabel(inputText, sizes, LEFT_ALIGN);
 }
 
 void Input_::onEvent(SDL_Event* event) 
@@ -106,26 +106,6 @@ void Input_::clear()
 string Input_::getValue()
 {
 	return inputText;
-}
-
-void Input_::textRender()
-{
-	SDL_Texture* textTexture;
-	SDL_Surface* textSurface;
-	SDL_Rect textRect;
-
-	if ((textSurface = TTF_RenderUTF8_Blended(font, inputText.c_str(), Colors.element_text)) != nullptr) {
-		textRect.w = textSurface->w;
-		textRect.h = textSurface->h;
-		textRect.x = sizes->x + 10;
-		textRect.y = sizes->y + sizes->h / 2 - textSurface->h / 1.888;
-
-		textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-		SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
-		SDL_FreeSurface(textSurface);
-	}
-
-	SDL_RenderPresent(renderer);
 }
 
 void Input_::Focus(bool value)

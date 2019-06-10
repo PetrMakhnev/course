@@ -31,10 +31,10 @@ void ItemList_::render()
 	else 
 		SDL_SetRenderDrawColor(renderer, Colors.element_background.r, Colors.element_background.g, Colors.element_background.b, Colors.element_background.a);
 
-
 	SDL_RenderFillRect(renderer, sizes);
 
-	renderLabel(mainLabel, sizes);
+
+	renderLabel(mainLabel, sizes, CENTERED_ALIGN);
 
 
 
@@ -48,7 +48,7 @@ void ItemList_::render()
 				SDL_SetRenderDrawColor(renderer, Colors.element_background.r, Colors.element_background.g, Colors.element_background.b, Colors.element_background.a);
 
 			SDL_RenderFillRect(renderer, &renderRect);
-			renderLabel(List[i]->text, &renderRect);
+			renderLabel(List[i]->text, &renderRect, LEFT_ALIGN);
 			renderRect.y += renderRect.h;
 		}
 	}

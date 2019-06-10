@@ -60,7 +60,6 @@ private:
 	//
 
 	//
-	bool* already_render_drop;
 
 	// Ёлементы приложени€
 	bool ready_fill_classes;

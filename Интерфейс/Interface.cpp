@@ -36,12 +36,12 @@ Interface::Interface(short width, short height)
 	ready_fill_classes = false;
 	nowOperation = 0;
 
-	already_render_drop = nullptr;
+	
 }
 
 Interface::~Interface()
 {
-	delete[] already_render_drop;
+
 }
 
 bool Interface::init()
@@ -88,6 +88,36 @@ void Interface::quit()
 	texture = nullptr;
 	SDL_Quit();
 	running = false;
+
+
+	for (size_t i = 0; i < Buttons.size(); i++)
+		delete Buttons.at(i);
+	for (size_t i = 0; i < Inputs.size(); i++)
+		delete Inputs.at(i);
+	for (size_t i = 0; i < ItemLists.size(); i++)
+		delete ItemLists.at(i);
+	for (size_t i = 0; i < DropDownLists.size(); i++)
+		delete DropDownLists.at(i);
+	for (size_t i = 0; i < Labels.size(); i++)
+		delete Labels.at(i);
+	for (size_t i = 0; i < TextFields.size(); i++)
+		delete TextFields.at(i);
+	
+
+	Buttons.clear();
+	Inputs.clear();
+	ItemLists.clear();
+	DropDownLists.clear();
+	Labels.clear();
+	TextFields.clear();
+
+	for (size_t i = 0; i < ptrBaseClass.size(); i++)
+		delete ptrBaseClass.at(i);
+
+	ptrBaseClass.clear();
+	type_ptrBaseClasses.clear();
+
+	TTF_Quit();
 
 	ready_fill_classes = false;
 

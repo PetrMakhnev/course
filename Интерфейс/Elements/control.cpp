@@ -16,51 +16,11 @@ void Control::render()
 	// virtual
 }
 
-void Control::renderLabel(string text)
-{
-	SDL_Texture* textTexture;
-	SDL_Surface* textSurface;
-	SDL_Rect textRect;
-
-	if ((textSurface = TTF_RenderUTF8_Blended(font, text.c_str(), Colors.element_text)) != nullptr) {
-		textRect.w = textSurface->w;
-		textRect.h = textSurface->h;
-		textRect.x = sizes->x + sizes->w / 2 - textSurface->w / 2;
-		textRect.y = sizes->y + sizes->h / 2 - textSurface->h / 2;
-
-		textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-		SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
-		SDL_FreeSurface(textSurface);
-	}
-
-	SDL_RenderPresent(renderer);
-}
-
-void Control::renderLabel(string text, SDL_Rect* renderRect)
-{
-	SDL_Texture* textTexture;
-	SDL_Surface* textSurface;
-	SDL_Rect textRect;
-
-	if ((textSurface = TTF_RenderUTF8_Blended(font, text.c_str(), Colors.element_text)) != nullptr) {
-		textRect.w = textSurface->w;
-		textRect.h = textSurface->h;
-		textRect.x = renderRect->x + renderRect->w / 2 - textSurface->w / 2;
-		textRect.y = renderRect->y + renderRect->h / 2 - textSurface->h / 1.88;
-
-		textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-		SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
-		SDL_FreeSurface(textSurface);
-	}
-
-	SDL_RenderPresent(renderer);
-}
-
 void Control::renderLabel(string text, SDL_Rect* renderRect, int type)
 {
 
-	SDL_Texture* textTexture;
-	SDL_Surface* textSurface;
+	SDL_Texture* textTexture = nullptr;
+	SDL_Surface* textSurface = nullptr;
 	SDL_Rect textRect;
 
 	if ((textSurface = TTF_RenderUTF8_Blended(font, text.c_str(), Colors.element_text)) != nullptr) {
@@ -77,7 +37,9 @@ void Control::renderLabel(string text, SDL_Rect* renderRect, int type)
 		textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 		SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
 		SDL_FreeSurface(textSurface);
+		SDL_DestroyTexture(textTexture);
 	}
+
 
 	SDL_RenderPresent(renderer);
 }

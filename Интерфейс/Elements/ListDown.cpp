@@ -30,16 +30,19 @@ void DropDownList::render()
 
 	// Отрисовка обводки
 	{
-		SDL_Rect border = *sizes;
-		border.x--;
-		border.y--;
-		border.w += 2;
-		border.h += 2;
+		SDL_Rect * border = new SDL_Rect;
+		*border = *sizes;
+		border->x--;
+		border->y--;
+		border->w += 2;
+		border->h += 2;
 
 
 		SDL_SetRenderDrawColor(renderer, Colors.element_border.r, Colors.element_border.g, Colors.element_border.b, Colors.element_border.a);
 
-		SDL_RenderFillRect(renderer, &border);
+		SDL_RenderFillRect(renderer, border);
+
+		delete border;
 	}
 
 	// Отрисовка тела

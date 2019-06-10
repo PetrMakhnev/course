@@ -36,8 +36,6 @@ public:
 public:
 
 	virtual void render();
-	virtual void renderLabel(string text);
-	virtual void renderLabel(string text, SDL_Rect* renderRect);
 	virtual void renderLabel(string text, SDL_Rect* renderRect, int type);
 
 	void unlock();

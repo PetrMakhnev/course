@@ -24,9 +24,12 @@ void Label::render()
 		return;
 	}
 		
+	SDL_SetRenderDrawColor(renderer, Colors.background.r, Colors.background.g, Colors.background.b, Colors.background.a);
+	SDL_Rect clearRect = textRect;
+	clearRect.w = 160;
+	SDL_RenderFillRect(renderer, &clearRect);
 
-
-	if ((textSurface = TTF_RenderUTF8_Blended(font, label.c_str() , Colors.element_text)) != nullptr) {
+	if ((textSurface = TTF_RenderUTF8_Blended(font, label.c_str(), Colors.element_text)) != nullptr) {
 		textRect.w = textSurface->w;
 		textRect.h = textSurface->h;
 		if (type == BY_RIGHT)
@@ -36,17 +39,12 @@ void Label::render()
 
 		textRect.y = coord.y + coord.h / 2 - textSurface->h / 2;
 
+		textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+		SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+		SDL_FreeSurface(textSurface);
+		SDL_DestroyTexture(textTexture);
+		SDL_RenderPresent(renderer);
 	}
-
-	SDL_SetRenderDrawColor(renderer, Colors.background.r, Colors.background.g, Colors.background.b, Colors.background.a);
-	SDL_Rect clearRect = textRect;
-	clearRect.w = 160;
-	SDL_RenderFillRect(renderer, &clearRect);
-
-	textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-	SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
-	SDL_FreeSurface(textSurface);
-	SDL_RenderPresent(renderer);
 }
 
 void Label::show(bool value)

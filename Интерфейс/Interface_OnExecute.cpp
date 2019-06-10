@@ -232,7 +232,7 @@ int Interface::onExecute()
 	Buttons.push_back(newButton21);
 
 
-	already_render_drop = new bool[DropDownLists.size()];
+
 
 
 	render();

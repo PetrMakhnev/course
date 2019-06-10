@@ -5,38 +5,18 @@ void Interface::mouseMotion(SDL_Event* event) {
 	int x, y;
 	SDL_GetMouseState(&x, &y);
 
-	bool already_render_item = false;
-	int already_render_item_index = -1;
+
 	for (int i = 0; i < ItemLists.size(); i++) {
-		if (ItemLists.at(i)->checkItemHover(x, y)) {
-			if (!already_render_item || i != already_render_item_index) {
-				already_render_item = true;
-				already_render_item_index = i;
-				ItemLists.at(i)->render();
-			}
-		}
-		else {
-			already_render_item = false;
-			already_render_item_index = -1;
-		}
+		if (ItemLists.at(i)->checkItemHover(x, y))
+			ItemLists.at(i)->render();
 		
 	}
 	
 
-	int count = 0;
+
 	for (int i = 0; i < DropDownLists.size(); i++) {
-		if (DropDownLists.at(i)->checkItemHover(x, y)) {
-			if (!already_render_drop[i]) {
-				already_render_drop[i] = true;
-				DropDownLists.at(i)->render();
-				count++;
-				cout << count << endl;
-				
-			}
-		}	
-		else {
-			already_render_drop[i] = false;
-		}
+		if (DropDownLists.at(i)->checkItemHover(x, y))
+			DropDownLists.at(i)->render();
 	}
 }
 
@@ -60,7 +40,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					break;
 
 				TextFields.at(0)->add("Количество классов: " + data);
-				TextFields.at(0)->render();
+				TextFields.at(0)->renderText();
 
 				count_element = atoi(data.c_str());
 				DropDownLists.at(0)->blocked();
@@ -79,7 +59,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 				
 
 				TextFields.at(0)->add("Ввод 1-го элемента");
-				TextFields.at(0)->render();
+				TextFields.at(0)->renderText();
 
 				Labels.at(1)->setText("Enter 1-st element");
 				Labels.at(1)->render();
@@ -117,7 +97,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					DropDownLists.at(2)->render();
 
 					TextFields.at(0)->add("Тип класса: Базовый класс");
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 					break;
 
 				case DROP_ID_CLASS:
@@ -128,7 +108,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					DropDownLists.at(2)->render();
 
 					TextFields.at(0)->add("Тип класса: Класс идентификатора");
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 
 					break;
 
@@ -140,7 +120,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					DropDownLists.at(2)->render();
 
 					TextFields.at(0)->add("Тип класса: Бинарная строка");
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 					break;
 
 				default: break;
@@ -151,10 +131,10 @@ void Interface::mouseButtonDown(SDL_Event* event)
 				if (count_ready + 1 == count_element) {
 
 					TextFields.at(0)->add("Значение класса: " + value);
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 
 					TextFields.at(0)->add("Все классы заполнены!");
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 
 					Labels.at(1)->setText("All classes has filled!");
 					Labels.at(1)->render();
@@ -170,14 +150,14 @@ void Interface::mouseButtonDown(SDL_Event* event)
 				else {
 
 					TextFields.at(0)->add("Значение класса: " + value);
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 
 					char* count_text = new char[5];
 					_itoa(count_ready + 2, count_text, 10);
 					string countText(count_text);
 
 					TextFields.at(0)->add("Ввод " + countText + "-го элемента");
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 
 					Labels.at(1)->setText("Enter " + countText + "-th element");
 					Labels.at(1)->render();
@@ -243,7 +223,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					string len_str = "Длина строки равна: " + len_num;
 
 					TextFields.at(0)->add(len_str);
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 					
 					Buttons.at(2)->hide();
 					Buttons.at(2)->render();
@@ -404,7 +384,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 					else 
 						TextFields.at(0)->add("Символ " + symbolStr + " НЕ найден в строке " + value);
 					
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 					///
 
 					Labels.at(6)->show(false);
@@ -436,7 +416,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					string text = ((BIN_String*)(ptrBaseClass.at(indexFirst)))->getString();
 					TextFields.at(0)->add("Результат инвертирования равен: " + text);
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 
 					
 					///
@@ -478,7 +458,7 @@ void Interface::mouseButtonDown(SDL_Event* event)
 
 					string text = result.getString();
 					TextFields.at(0)->add("Результат вычитания равен: " + text);
-					TextFields.at(0)->render();
+					TextFields.at(0)->renderText();
 					
 					///
 
@@ -585,7 +565,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					if (count < 2) {
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов базового класса");
-						TextFields.at(0)->render();
+						TextFields.at(0)->renderText();
 						
 						return;
 					}
@@ -642,7 +622,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					if (count < 1) {
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов базового класса");
-						TextFields.at(0)->render();
+						TextFields.at(0)->renderText();
 						
 						return;
 					}
@@ -695,7 +675,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					if (count < 1) {
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов класса идентификатора");
-						TextFields.at(0)->render();
+						TextFields.at(0)->renderText();
 						
 						return;
 					}
@@ -747,7 +727,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					if (count < 2) {
 						// ошибка
 						TextFields.at(0)->add("Слишком мало объектов класса идентификатора");
-						TextFields.at(0)->render();
+						TextFields.at(0)->renderText();
 						
 						return;
 					}
@@ -805,7 +785,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					if (count < 2) {
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов класса идентификатора");
-						TextFields.at(0)->render();
+						TextFields.at(0)->renderText();
 						
 						return;
 					}
@@ -864,7 +844,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					if (count < 1) {
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов класса идентификатора");
-						TextFields.at(0)->render();
+						TextFields.at(0)->renderText();
 
 						return;
 					}
@@ -923,7 +903,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					if (count < 1) {
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов класа десятичного числа");
-						TextFields.at(0)->render();
+						TextFields.at(0)->renderText();
 						
 						return;
 					}
@@ -979,7 +959,7 @@ void Interface::mouseButtonUp(SDL_Event* event)
 					if (count < 2) {
 						// ошибка 
 						TextFields.at(0)->add("Слишком мало объектов класса двоичного числа");
-						TextFields.at(0)->render();
+						TextFields.at(0)->renderText();
 						
 						return;
 					}

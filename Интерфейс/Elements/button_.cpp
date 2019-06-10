@@ -47,18 +47,8 @@ void Button_::render()
 
 		SDL_RenderFillRect(renderer, sizes);
 	}
-	// Отрисовка текста в кнопке
-	{
-		textSurface = TTF_RenderUTF8_Blended(font, text.c_str(), Colors.element_text);
-		textRect.w = textSurface->w;
-		textRect.h = textSurface->h;
-		textRect.x = sizes->x + sizes->w / 2 - textSurface->w / 2;
-		textRect.y = sizes->y + sizes->h / 2 - textSurface->h / 1.888;
 
-		textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-		SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
-		SDL_FreeSurface(textSurface);
-	}
+	renderLabel(text, sizes, CENTERED_ALIGN);
 
 	SDL_RenderPresent(renderer);
 }
