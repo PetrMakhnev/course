@@ -6,7 +6,8 @@ unsigned int ID_String::calls = 0;
 ID_String::ID_String(char* _str) : String(_str)
 {
 	if (!isCorrect((char*)_str)) {
-		str = nullptr;
+		str = new char;
+		str = '\0';
 		length = 0;
 	}
 
@@ -17,7 +18,8 @@ ID_String::ID_String(char* _str) : String(_str)
 ID_String::ID_String(const char* _str) : String(_str)
 {
 	if (!isCorrect((char*)_str)) {
-		str = nullptr;
+		str = new char;
+		str = '\0';
 		length = 0;
 	}
 
@@ -33,7 +35,8 @@ ID_String::~ID_String()
 ID_String::ID_String(const ID_String& obj) : String(obj)
 {
 	if (!isCorrect((char*)obj.str)) {
-		str = nullptr;
+		str = new char;
+		str = '\0';
 		length = 0;
 	}
 
@@ -54,7 +57,8 @@ bool ID_String::isCorrect(char* _str)
 			if (!isalpha(_str[i]) && !isdigit(_str[i]) && _str[i] != '_')
 			{
 				if (str != nullptr) {
-					str = nullptr;
+					str = new char;
+					str = '\0';
 					length = 0;
 				}
 				return false;
@@ -67,11 +71,15 @@ bool ID_String::isCorrect(char* _str)
 
 void ID_String::toLowerCase()
 {
-	if (str != nullptr)
+	if (str != nullptr) {
 		for (size_t i = 0; i < length; i++)
 			if (isalpha(str[i]))
 				str[i] = (char)tolower(str[i]);
-
+	}
+	else {
+		str = new char;
+		str = '\0';
+	}
 	cout << "Производный класс 'Строка-идентификатор'. Сработала функция приведения строки в нижний регистр" << endl;
 }
 
@@ -128,7 +136,7 @@ ID_String& ID_String::operator-(const ID_String& obj)
 		}
 	}
 	else {
-		backString = new ID_String;
+		backString = new ID_String((char *)'\0');
 		return *backString;
 	}
 }

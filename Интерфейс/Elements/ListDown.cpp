@@ -134,10 +134,9 @@ vector<DropDownItem*> DropDownList::getItems()
 	return List;
 }
 
-DropDownList* DropDownList::clear()
+void DropDownList::clear()
 {
 	mainLabel = "";
-	return this;
 }
 
 DropDownList * DropDownList::deleteItems()

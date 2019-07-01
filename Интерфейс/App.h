@@ -25,15 +25,6 @@ enum STRING_CLASS_ID {
 	STRING_BIN
 };
 
-enum INTERFACE_STATES {
-	INTERFACE_START,
-
-	INTERFACE_ENTER_COUNT,
-	INTERFACE_ENTER_START_VALUES,
-
-	INTERFACE_TESTING
-};
-
 class Interface {
 private:
 	bool running;
@@ -46,7 +37,6 @@ private:
 	short screenWidth;
 	short screenHeight;
 
-	int state;
 
 	COLOR Colors;
 
@@ -71,8 +61,6 @@ private:
 
 	int nowOperation;
 
-	
-
 public:
 	Interface();
 	Interface(short width, short height);
@@ -82,18 +70,14 @@ private:
 	void render();
 	void onEvent();
 
-	// initialize SDL
 	bool init();
-
-	// mouse events prototype
+	
 	void mouseButtonDown(SDL_Event* event);
 	void mouseButtonUp(SDL_Event* event);
 	void mouseMotion(SDL_Event* event);
 
-	// key pressed
+	
 	void keyDown(SDL_Event* event);
-
-	//
 	void quit();
 
 public:

@@ -12,8 +12,6 @@ void Interface::mouseMotion(SDL_Event* event) {
 		
 	}
 	
-
-
 	for (int i = 0; i < DropDownLists.size(); i++) {
 		if (DropDownLists.at(i)->checkItemHover(x, y))
 			DropDownLists.at(i)->render();

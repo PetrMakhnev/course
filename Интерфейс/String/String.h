@@ -13,7 +13,7 @@ public:
 	String(const String& obj);
 	String(char* _str);
 	String(const char* _str);
-	String(char symbol);
+	String(const char symbol);
 	~String();
 public:
 	unsigned int getLength();

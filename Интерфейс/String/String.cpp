@@ -4,7 +4,8 @@ unsigned int String::calls = 0;
 
 String::String()
 {
-	str = nullptr;
+	str = new char;
+	str = '\0';
 	length = 0;
 
 	cout << "Базовый класс. Сработал конструктор без параметров" << endl;
@@ -25,8 +26,10 @@ String::String(const String& obj)
 		str = _str;
 		length = obj.length;
 	}
-	else
-		str = nullptr;
+	else {
+		str = new char;
+		str = '\0';
+	}
 	
 	calls++;
 
@@ -55,8 +58,10 @@ String::String(char* new_str)
 		str = _str;
 		length = length_new_str;
 	}
-	else
-		str = nullptr;
+	else {
+		str = new char;
+		str = '\0';
+	}
 
 	cout << "Базовый класс. Сработал конструктор с СИ-строкой" << endl;
 }
@@ -81,13 +86,15 @@ String::String(const char* new_str)
 		str = _str;
 		length = length_new_str;
 	}
-	else
-		str = nullptr;
+	else {
+		str = new char;
+		str = '\0';
+	}
 
 	cout << "Базовый класс. Сработал конструктор с константной СИ-строкой" << endl;
 }
 
-String::String(char symbol)
+String::String(const char symbol)
 {
 	char* _str = new char;
 	*_str = symbol;
@@ -125,8 +132,10 @@ void String::operator=(String& obj)
 		str = _str;
 		length = obj.length;
 	}
-	else
-		str = nullptr;
+	else {
+		str = new char;
+		str = '\0';
+	}
 
 	cout << "Сработала перегрузка операции '='" << endl;
 }

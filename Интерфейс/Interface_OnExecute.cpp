@@ -231,14 +231,9 @@ int Interface::onExecute()
 	);
 	Buttons.push_back(newButton21);
 
-
-
-
-
 	render();
 	onEvent();
 
-	
 
 	return 0;
 }

@@ -2,7 +2,7 @@
 #include "control.h"
 
 
-enum InputTypes {
+enum INPUT_TYPES {
 	INPUT_COUNT_ELEMENT,
 	INPUT_START_VALUE,
 
@@ -24,9 +24,6 @@ public:
 		focus = false;
 		inputText = "";
 	};
-
-private:
-	void textRender();
 
 public:
 	void render();

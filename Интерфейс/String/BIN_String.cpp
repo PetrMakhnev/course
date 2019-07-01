@@ -7,7 +7,8 @@ unsigned int BIN_String::calls = 0;
 BIN_String::BIN_String(char* _str) : String(_str)
 {
 	if (!isCorrect(_str)) {
-		str = nullptr;
+		str = new char;
+		str = '\0';
 		length = 0;
 	}
 
@@ -18,7 +19,8 @@ BIN_String::BIN_String(char* _str) : String(_str)
 BIN_String::BIN_String(const char* _str) : String(_str)
 {
 	if (!isCorrect((char*)_str)) {
-		str = nullptr;
+		str = new char;
+		str = '\0';
 		length = 0;
 	}
 
@@ -34,7 +36,8 @@ BIN_String::~BIN_String()
 BIN_String::BIN_String(const BIN_String& obj) : String(obj.str)
 {
 	if (!isCorrect(obj.str)) {
-		str = nullptr;
+		str = new char;
+		str = '\0';
 		length = 0;
 	}
 
@@ -71,6 +74,10 @@ void BIN_String::invert()
 
 		delete[] str;
 		str = _str;
+	}
+	else {
+		str = new char;
+		str = '\0';
 	}
 }
 
@@ -219,7 +226,6 @@ BIN_String& BIN_String::operator-(BIN_String& obj)
 		}
 	}
 
-	
 
 	BIN_String * ret = new BIN_String(result);
 	return *ret;

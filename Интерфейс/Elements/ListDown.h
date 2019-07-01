@@ -1,7 +1,7 @@
 #pragma once
 #include "control.h"
 
-enum DropElement {
+enum DROP_ITEM_LIST_TYPES {
 	DROP_BASE_CLASS = 10,
 	DROP_ID_CLASS = 11,
 	DROP_BIN_CLASS = 12
@@ -46,14 +46,13 @@ class DropDownList : public Control {
 private:
 	vector <DropDownItem*> List;
 	SDL_Rect* itemSizes;
-	int count;
+	string mainLabel;
+	bool show_menu;
 
 	int flag_select;
 
 	int type;
 
-	string mainLabel;
-	bool show_menu;
 
 	SDL_Texture* dropButton;
 
@@ -65,7 +64,7 @@ public:
 		itemSizes = _itemSizes;
 		dropButton = IMG_LoadTexture(renderer, "sfx/drop_button.png");
 		show_menu = false;
-		count = 0;
+		
 	};
 
 
@@ -78,15 +77,15 @@ public:
 	void open(bool value);
 	bool open();
 
+	int checkItemHover(int x, int y);
+
 	void setValue(string value);
 	string getValue();
 	int getFlag();
 	vector <DropDownItem*> getItems();
 
-	DropDownList* clear();
+	void clear();
 
 	DropDownList* deleteItems();
-
-	int checkItemHover(int x, int y);
 
 };

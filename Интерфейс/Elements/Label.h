@@ -1,9 +1,5 @@
 #pragma once
-#include "SDL.h"
-#include "SDL_image.h"
-#include "SDL_ttf.h"
-#include "iostream"
-#include "../Color.h"
+#include "control.h"
 using namespace std;
 
 enum TYPES {
@@ -11,25 +7,14 @@ enum TYPES {
 	BY_LEFT
 };
 
-class Label {
+class Label : public Control{
 private:
 	string label;
-	SDL_Renderer* renderer;
-	SDL_Texture* textTexture;
-	SDL_Surface* textSurface;
-	TTF_Font* font;
-
-	SDL_Rect coord;
-	SDL_Rect textRect;
-
-	COLOR Colors;
-
-	bool display;
-
 	int type;
 
 public:
-	Label(SDL_Renderer * renderer, SDL_Rect * coord, int type, string newString, const char * _font, int _font_size);
+	Label(SDL_Renderer* _renderer, SDL_Rect* _sizes, int _type, string _new_string, const char* _font, int _font_size);
+
 public:
 	void render();
 	void show(bool value);

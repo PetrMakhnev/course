@@ -1,7 +1,7 @@
 #pragma once
 #include "control.h"
 
-enum types {
+enum ITEM_LIST_TYPES {
 	NULLELE,
 
 	TEST_STRING_EQUAL,
@@ -46,20 +46,19 @@ class ItemList_ : public Control {
 private:
 	vector <Item *> List;
 	SDL_Rect* itemSizes;
-	int count;
+	
 
 	string mainLabel;
 	bool show_menu;
 
 public:
 	
-	ItemList_(SDL_Renderer* _renderer, SDL_Rect* _sizes, SDL_Rect* _itemSizes, string _mainLabel, string _font, int _font_size) : Control(_renderer, _sizes, _font, _font_size)
+	ItemList_(SDL_Renderer* _renderer, SDL_Rect* _sizes, SDL_Rect* _itemSizes, string _mainLabel,string _font, int _font_size) : Control(_renderer, _sizes, _font, _font_size)
 	{
 		mainLabel = _mainLabel;
 		itemSizes = _itemSizes;
 
 		show_menu = false;
-		count = 0;
 	};
 
 

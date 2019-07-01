@@ -2,7 +2,6 @@
 
 Interface::Interface()
 {
-	state = INTERFACE_START;
 	running = true;
 	window = nullptr;
 	renderer = nullptr;
@@ -21,7 +20,6 @@ Interface::Interface()
 
 Interface::Interface(short width, short height)
 {
-	state = INTERFACE_START;
 	running = true;
 	window = nullptr;
 	renderer = nullptr;
